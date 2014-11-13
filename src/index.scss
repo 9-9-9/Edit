@@ -1,0 +1,37 @@
+// @import 'base';
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	// @include background(
+		
+	// 	radial-gradient( center 600px, ellipse 300px 300px, rgba(#fff, 0.9), rgba(#fff, 0.0) 80%, rgba(#fff, 0) ),
+	// 	radial-gradient( center 900px, circle 700px, rgba(#fff, 0.3), rgba(#fff, 0) ),
+			
+	// 	radial-gradient( center 700px, circle 800px, rgba(#000, 0.0) 0%, rgba(#000, 0.0) 30%, rgba(#000, 0.9) ),
+	// 	linear-gradient( 0deg, rgba(#666372, 1) 0%, rgba(#1f1d26, 1) 100%) left repeat
+
+	// );
+
+	background-image: url('http://cdn.arstechnica.net/wp-content/uploads/2014/07/Yosemite.jpg');
+}
+
+body > .wrapper {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+
+	> .codoshop {
+		width: calc(100% - 60px);
+		height: calc(100% - 60px);
+	}
+}
+

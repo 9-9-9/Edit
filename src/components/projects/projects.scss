@@ -1,0 +1,210 @@
+@import 'variables';
+
+.codoshop-project-scrollview {
+	.codoshop-project:nth-last-child(2) {
+		margin-bottom: 0;
+	}
+}
+.codoshop-project {
+	margin-bottom: $lhc * 0.25;
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0;
+
+	&.expanded {
+		// flex-grow: 1;
+	}
+	&:not(.expanded) {
+		// flex-grow: 0;
+	}
+
+	ul.codoshop-tree {
+		display: flex;
+		flex-direction: column;
+		// flex-shrink: 0;
+		// align-self: flex-start;
+
+		li {
+			margin: 0 0 2px 0;
+			display: flex;
+			flex-shrink: 0;
+			// font-size: $fsb * 1.25;
+			 font-weight: 200;
+			// text-transform: uppercase;
+			&:after {
+				content: "";
+				width: 3px;
+				margin-left: 3px;
+				margin-right: 1px;
+				flex-shrink: 0;
+				background-color: rgba(#fff, 0.7);
+			}
+			a {
+				flex-grow: 1;
+				flex-shrink: 0;
+				padding: 4px 4px 4px 0;
+				// font-size: $fsb * 1.15;
+				// text-align: right;
+				text-shadow: 0 1px 0 rgba(#000, 0.2);
+				color: rgba(#fff, 0.7);
+				border-top: 1px solid rgba(#fff, 0.2);
+				border-left: 1px solid rgba(#fff, 0.2);
+				// background-color: rgba(#fff, 0.1);
+				// box-shadow: 0px 1px 3px rgba(#000, 0.2);
+				@include background(
+					linear-gradient( 180deg, rgba(#000, 0.05) 0%, rgba(#fff, 0.0) 20%) left repeat
+				);
+			}
+		}
+	}
+}
+.divider-block {
+	// height: 25px;
+	// margin: ($lhc * 0.4) 0px (-($lhc * 0.5)) ($lhc * 0.75);
+	padding: ($lhc * 0.0) ($lhc * 0.25) ($lhc * 0.0) ($lhc * 0.25);
+	position: relative;
+	display: flex;
+	align-items: center;
+	$thickness: 1px;
+	background-color: $bg-color-3;
+	// border-top: 1px solid rgba(#0000ff, 0.2);
+	// border-bottom: 1px solid rgba(#0000ff, 0.2);
+	
+	// @include background(
+	// 	radial-gradient( -220px 0px, ellipse 500px 50px, darken($light-violet, 15), rgba(#fff, 0.0) 80%, rgba(#fff, 0) ),
+	// 	radial-gradient( -220px 0px, ellipse 500px 120px, darken($light-violet, 15), rgba(#fff, 0) ),
+	// 	linear-gradient( 0deg, rgba(#000, 1) 0%, rgba(#000, 1) 100%) left repeat
+	// );
+	
+
+	// Icon
+	> div:first-child {
+		margin-right: ($lhc * 0.15);
+		// padding: ($lhc * 0.0);
+		position: relative;
+		top: 0px;
+
+		// display: flex;
+		display: none;
+		justify-content: center;
+		align-items: center;
+		flex-grow: 0;
+		flex-shrink: 0;
+		// align-self: flex-end;
+		align-self: center;
+
+		> div {
+			padding: ($lhc * 0.0);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			// border: 1px solid $light-silver;
+			// border-radius: 60px;
+			> .icon {
+				font-size: 21px;
+				font-weight: 200;
+				line-height: 1;
+				color: rgba(#fff, 0.9);
+
+				
+			}
+		}
+
+	}
+
+	> div:nth-child(2), > form:nth-child(2) {
+		margin: 3px 0 3px 0;
+		top: 0px;
+
+		position: relative;
+		display: flex;
+		flex-grow: 1;
+		// flex-shrink: 0;
+		
+
+		input {
+			width: 0;
+			min-width: 150px;
+			padding: 0 !important;
+			flex-grow: 1;
+			border: none !important;
+			font-size: $fsb * 1.70 !important;
+			font-weight: 200 !important;
+			line-height: 1.0 !important;
+			letter-spacing: -0.0em !important;
+			// color: darken($light-violet, 10) !important;
+			text-shadow: 0px 3px 0 rgba(#000, 0.1);
+			color: rgba(#fff, 0.7) !important;
+		}
+		// background-color: rgba(#fff, 0.2) !important;
+	}
+	// Drop-down arrow button
+	> div:last-child {
+		width: 28px;
+		// position: relative;
+		// top: 1px;
+		display: flex;
+		flex-direction: column;
+		flex-shrink: 0;
+		color: rgba(#fff, 0.5);
+		// text-shadow: 0 3px 0px rgba(#bbb, 0.7);
+		// &:before, &:after {
+		// 	content: "";
+		// }
+
+		// &:after {
+		// 	content: "";
+		// 	height: $thickness;
+		// 	background-color: $silver;
+		// }
+		button {
+			// height: 100%;
+			padding: 0;
+			position: relative;
+			font-size: $fsb * 1.25;
+			color: inherit;
+			// border: 1px solid rgba(#fff, 0.3);
+			// border-width: 1px 1px 0 1px;
+			> span {
+				@include position(relative, 1px 0 0 0);
+			}
+		}
+	}
+}
+	
+ul.codoshop-projects-button-row {
+	display: flex;
+	> li {
+		display: flex;
+		> a {
+			flex-grow: 1;
+			font-size: 12px;
+			font-weight: 200;
+			color: rgba(#fff, 0.7);
+		}
+	}
+	
+	> li:not(:empty) {
+		background-color: $bg-color-3;
+	}
+	> li:empty {
+		width: 1px;
+		flex-shrink: 0;
+	}
+	> li:nth-child(1) {
+		width: 0;
+		flex-grow: 1;
+		> a {
+			padding: 0 ($lhc * 0.25);
+		}
+	}
+	> li:nth-child(3), li:nth-child(5) {
+		width: 20px;
+		flex-shrink: 0;
+		text-align: center;
+	}
+	
+	// li:nth-child(3) {
+		
+	// }
+}

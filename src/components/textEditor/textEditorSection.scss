@@ -1,0 +1,190 @@
+@import '../utils';
+@import '../variables';
+
+
+ul.codoshop-text-editor-tabs {
+	// border-bottom: 1px solid rgba(#000, 0.9);
+	display: flex;
+	flex-grow: 0;
+	flex-shrink: 0;
+	font-size: $fsb * 0.85;
+	font-weight: 200;
+
+	> li {
+		width: 14rem !important;
+		display: flex;
+		font-size: inherit;
+		font-weight: inherit;
+
+		// &:before, &:after {
+		// 	content: none;
+		// }
+
+		> a {
+			padding: 0;
+			font-size: inherit;
+			font-weight: inherit;
+			letter-spacing: inherit;
+			text-transform: inherit;
+			justify-content: flex-end;
+
+	
+			color: inherit;
+			letter-spacing: inherit;
+			text-transform: inherit;
+
+			&:first-child {
+				padding: 0.15em 7px 0.17em 7px;
+				flex-grow: 1;
+				flex-shrink: 0;
+			}
+			// X button
+			&:nth-child(2) {
+				width: 20px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				> div {
+					@include size(10px 10px);
+					position: relative;
+					display: flex;
+					justify-content: flex-start;
+					align-items: center;
+					flex-grow: 0;
+					flex-shrink: 0;
+
+					&:before, &:after {
+						content: "";
+						@include size(1px 11px);
+						@include position(absolute, 0px 0 0 0px);
+						display: block;
+					}
+					&:after {
+						transform: rotate(45deg);
+					}
+					&:before {
+						transform: rotate(-45deg);
+					}
+				}
+			}
+
+			
+		}
+		
+		&.selected {
+			background-color: $color-bg-4;
+			> a:first-child {
+				color: $light-violet;
+			}
+			> a:nth-child(2) {
+				> div {
+					&:before, &:after {
+						background-color: rgba(#fff, 0.5);
+					}
+				}
+			}
+		}
+		&:not(.selected) {
+			background-color: $color-bg-2;
+			> a:first-child {
+				// color: rgba(#fff, 0.4);
+				color: $silver;
+			}
+			> a:nth-child(2) {
+				> div {
+					&:before, &:after {
+						background-color: $silver;
+					}
+				}
+			}
+			
+			// > a, > div {
+				
+			// }
+		}
+
+		// new file button
+		&:nth-last-child(2) {
+			width: auto !important;
+			font-weight: 100;
+			flex-grow: 0;
+			flex-shrink: 0;
+			border-right: 0;
+			> a {
+				padding: 0.15em 7px 0.17em 7px;
+				position: relative;
+				&:hover {
+					background-color: $color-bg-2 !important;
+				}
+				span {
+					position: relative;
+					top: 0px;
+				}
+			}
+			
+			
+		}
+		&:last-child {
+			flex: 1 0 0px;
+			overflow: hidden;
+		}
+
+		&:after {
+			content: "";
+			width: 1px;
+			flex-grow: 0;
+			flex-shrink: 0;
+			background-color: $bg-color-2;
+		}
+	}
+}
+.codoshop-text-editor-content {
+	position: relative;
+	// box-shadow: 0px 0px 20px rgba(#000, 0.2); 5701ff 17151d 00fff8 12111f
+	padding: 0 0 0 0;
+	flex-grow: 1;
+
+	// background-color: rgba(lighten($bg-color, 5), 0.9);
+	@include background(
+		// radial-gradient( 20% 50%, ellipse 800px 300px, rgba(#002aff, 0.02), rgba(#fff, 0) ),
+		// radial-gradient( 70% 50%, ellipse 800px 300px, rgba(#002aff, 0.02), rgba(#fff, 0) ),
+		radial-gradient( center center, ellipse 120% 120%, rgba(#000, 0.0) 0%, rgba(#000, 0.0) 80%, rgba(#000, 0.9) ),
+
+		radial-gradient( 250px 30px, ellipse 300px 10px, rgba(#00c5ca, 0.1), rgba(#000, 0.0) ),
+		radial-gradient( 200px 40px, ellipse 300px 10px, rgba(#fff, 0.1), rgba(#000, 0.0) ),
+
+		// linear-gradient( 0deg, rgba(#fff, 0.0) 30%, rgba(#00fff8, 0.05) 50%, rgba(#fff, 0.0) 100%),
+		radial-gradient( 50% 50%, ellipse 800px 800px, rgba(#00fff8, 0.05), rgba(#fff, 0) ),
+		linear-gradient( 0deg, rgba(lighten(#11131f, 8), 0.95) 0%, rgba(lighten(#11131f, 10), 0.95) 100%)
+	);
+
+	background:
+		radial-gradient( ellipse 120% 120%, rgba(#000, 0.0) 0%, rgba(#000, 0.0) 80%, rgba(#000, 0.9) ),
+		radial-gradient( ellipse 300px 10px, rgba(#00c5ca, 0.1), rgba(#000, 0.0) ),
+		radial-gradient( ellipse 300px 10px, rgba(#fff, 0.1), rgba(#000, 0.0) ),
+		radial-gradient( ellipse 800px 800px, rgba(#00fff8, 0.05), rgba(#fff, 0) ),
+		linear-gradient( rgba(lighten(#11131f, 8), 0.95) 0%, rgba(lighten(#11131f, 10), 0.95) 100%);
+
+	background-position:
+		center center,
+		0px 0px,
+		0px 10px,
+		50% 50%;
+
+	> div {
+		z-index: 1;
+	}
+	// 5d3f03
+	// &:after {
+	// 	content: "";
+	// 	position: absolute;
+	// 	top: 0;
+	// 	pointer-events: none;
+	// 	@include size(60px 100%);
+	// 	@include background(
+	// 		linear-gradient( 0deg, rgba(#12111f, 0.20) 0%, rgba(#17151d, 0.02) 100%)
+	// 	);
+	// 	z-index: 100;
+	// }
+}

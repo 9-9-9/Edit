@@ -1,0 +1,192 @@
+@import 'utils';
+
+
+
+
+$font-size-base:          	14px !default;
+$fsb: $font-size-base;
+$line-height-base:        	1.428571429 !default; // 20/14
+$lhb: $line-height-base;
+$line-height-computed:    	floor(($font-size-base * $line-height-base)) !default; // ~20px
+$lhc: $line-height-computed;
+$font-family-sans-serif:  	"Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif:       	Georgia, "Times New Roman", Times, serif !default;
+//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+$font-family-monospace:   	Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-base:        	$font-family-sans-serif !default;
+
+$master-opacity: 0.94;
+
+//** Background for `.codoshop`.
+$body-bg:               #fff !default;
+//** Default text color for `.codoshop`.
+$text-color:            #ccc !default;
+
+//** Global textual link color.
+$link-color:            #428bca !default;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      darken($link-color, 15%) !default;
+
+// $bg-color-1: #17151d;
+$bg-color-1: rgba(darken(#666, 8), $master-opacity - 0.05);
+$bg-color-2: #15131d;
+$bg-color-3: rgba(lighten(#1f2733, 30), $master-opacity);
+$bg-color-4: rgba(#ff7100, $master-opacity);
+
+$dark: rgba(#222, $master-opacity);
+$less-dark: rgba(#333, $master-opacity);
+$light-silver: rgba(#ccc, 0.3);
+$silver: rgba(#999, 0.9);
+// $light-blue: rgba(#72f4ff, $master-opacity);
+// $light-blue: rgba(#81fff8, $master-opacity);
+$light-blue: rgba(#90dbea, $master-opacity);
+$light-violet: rgba(#a0cdff, $master-opacity);
+// 444459
+
+
+.bg-color-1 {
+	background-color: $bg-color-1;
+}
+.bg-color-2 {
+	background-color: $bg-color-2;
+}
+.bg-color-3 {
+	background-color: $bg-color-3;
+}
+.bg-color-4 {
+	background-color: $bg-color-4;
+}
+
+
+$top-bar-height: 25px;
+$left-column-width: 220px;
+$right-column-width: 220px;
+
+@mixin flex-grid() {
+	.flex, .fp {
+		display: flex;
+	}
+	.justify-content-center {
+		justify-content: center;
+	}
+	.align-items-center {
+		align-items: center;
+	}
+	.align-items-flex-start {
+		align-items: flex-start;
+	}
+	.fp-direction-column, .fp-d-c {
+		flex-direction: column;
+	}
+	.flex-parent-wrap, .fp-wrap {
+		flex-wrap: wrap;
+	}
+	.flex-parent-center, .fp-center {
+		@extend .justify-content-center;
+		@extend .align-items-center;
+	}
+
+	.flex-child-align-self-center, .fc-as-center {
+		align-self: center;
+	}
+	.flexchild-grow-0, .fc-g-0 {
+		flex-grow: 0;
+	}
+	.flexchild-grow-1, .fc-g-1 {
+		flex-grow: 1;
+	}
+
+	.flexchild-shrink-0, .fc-s-0 {
+		flex-shrink: 0;
+	}
+	.flexchild-shrink-1, .fc-s-1 {
+		flex-shrink: 1;
+	}
+
+
+	.f-i-2dot5 {
+		flex: 0 0 2.5rem;
+	}
+	.f-i-3 {
+		flex: 0 0 3rem;
+	}
+	.f-i-5 {
+		flex: 0 0 5rem;
+	}
+	.flex-item-3 {
+		flex: 0 0 3rem;
+	}
+	.flex-item-6 {
+		flex: 0 0 6rem;
+	}
+	.flex-item-25 {
+		flex: 0 0 12rem;
+	}
+
+	.pad-top-0 {
+		padding-top: 0;
+	}
+	.pad-top-01 {
+		padding-top: 0.1rem;
+	}
+	.pad-top-025 {
+		padding-top: 0.25rem;
+	}
+	.pad-top-04 {
+		padding-top: 0.4rem;
+	}
+	.pad-top-05 {
+		padding-top: 0.5rem;
+	}
+	.pad-top-dot8 {
+		padding-top: 0.8rem;
+	}
+	.pad-top-1 {
+		padding-top: 1rem;
+	}
+	.pad-top-1dot5 {
+		padding-top: 1.5rem;
+	}
+	.pad-top-2 {
+		padding-top: 2rem;
+	}
+}
+
+
+
+
+.light-blue {
+	color: $light-blue;
+}
+.light-violet {
+	color: $light-violet;
+}
+.bold {
+	font-weight: 900;
+}
+// @mixin bg-1() {
+// 	// @include background(
+// 	//     // radial-gradient( 100px 200px, ellipse 400px 400px, rgba(#000, 0.4), rgba(#fff, 0) ),
+// 	//     linear-gradient( rgba(darken(#555, 0), $master-opacity), rgba(darken(#555, 0), $master-opacity) ) left repeat
+// 	// ); 43474a
+// 	background-color: rgba(darken(#666, 8), $master-opacity - 0.05);
+// }
+$color-bg-1: rgba(darken(#666, 8), $master-opacity - 0.05);
+$color-bg-2: rgba(lighten(#555, 6), $master-opacity - 0.05);
+$color-bg-3: rgba(lighten(#333, 0), 0.9);
+$color-bg-4: rgba(lighten(#666, 2), $master-opacity);
+
+
+
+
+.ui-tooltip {
+	padding: 8px;
+	position: absolute;
+	z-index: 9999;
+	max-width: 300px;
+	-webkit-box-shadow: 0 0 5px #aaa;
+	box-shadow: 0 0 5px #aaa;
+}
+body .ui-tooltip {
+	border-width: 0px;
+}
