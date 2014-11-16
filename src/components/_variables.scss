@@ -29,14 +29,19 @@ $link-hover-color:      darken($link-color, 15%) !default;
 
 // $bg-color-1: #17151d;
 $bg-color-1: rgba(darken(#666, 8), $master-opacity - 0.05);
-$bg-color-2: #15131d;
-$bg-color-3: rgba(lighten(#1f2733, 30), $master-opacity);
-$bg-color-4: rgba(#ff7100, $master-opacity);
+$bg-color-2: rgba(lighten(#555, 6), $master-opacity - 0.05);
+
+$bg-color-3: rgba(lighten(#1f2733, 30), $master-opacity - 0.05);
+$bg-color-3-2: #3b4b64;
+
+$bg-color-4: #15131d;
+$bg-color-5: rgba(#ff7100, $master-opacity);
 
 $dark: rgba(#222, $master-opacity);
 $less-dark: rgba(#333, $master-opacity);
 $light-silver: rgba(#ccc, 0.3);
 $silver: rgba(#999, 0.9);
+$silver-2: rgba(#999, 0.7);
 // $light-blue: rgba(#72f4ff, $master-opacity);
 // $light-blue: rgba(#81fff8, $master-opacity);
 $light-blue: rgba(#90dbea, $master-opacity);
@@ -63,11 +68,17 @@ $left-column-width: 220px;
 $right-column-width: 220px;
 
 @mixin flex-grid() {
-	.flex, .fp {
+	.fp {
 		display: flex;
 	}
-	.justify-content-center {
+	.fp-jc-c {
 		justify-content: center;
+	}
+	.fp-jc-fs {
+		justify-content: flex-start;
+	}
+	.fp-jc-fe {
+		justify-content: flex-end;
 	}
 	.align-items-center {
 		align-items: center;
@@ -75,16 +86,16 @@ $right-column-width: 220px;
 	.align-items-flex-start {
 		align-items: flex-start;
 	}
-	.fp-direction-column, .fp-d-c {
+	.fp-fd-c {
 		flex-direction: column;
 	}
 	.flex-parent-wrap, .fp-wrap {
 		flex-wrap: wrap;
 	}
-	.flex-parent-center, .fp-center {
-		@extend .justify-content-center;
-		@extend .align-items-center;
-	}
+	// .flex-parent-center, .fp-center {
+	// 	@extend .justify-content-center;
+	// 	@extend .align-items-center;
+	// }
 
 	.flex-child-align-self-center, .fc-as-center {
 		align-self: center;
@@ -171,10 +182,10 @@ $right-column-width: 220px;
 // 	// ); 43474a
 // 	background-color: rgba(darken(#666, 8), $master-opacity - 0.05);
 // }
-$color-bg-1: rgba(darken(#666, 8), $master-opacity - 0.05);
-$color-bg-2: rgba(lighten(#555, 6), $master-opacity - 0.05);
-$color-bg-3: rgba(lighten(#333, 0), 0.9);
-$color-bg-4: rgba(lighten(#666, 2), $master-opacity);
+// $color-bg-1: rgba(darken(#666, 8), $master-opacity - 0.05);
+// $color-bg-2: rgba(lighten(#555, 6), $master-opacity - 0.05);
+// $color-bg-3: rgba(lighten(#333, 0), 0.9);
+// $color-bg-4: rgba(lighten(#666, 2), $master-opacity);
 
 
 

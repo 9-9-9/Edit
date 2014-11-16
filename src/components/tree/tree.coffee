@@ -24,7 +24,6 @@ angular.module('codoshop-tree', ['ngAnimate'])
 						scope.node.status = 'open'
 					else
 						scope.node.status = 'closed'
-					
 				return
 
 			return

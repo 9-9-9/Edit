@@ -13,192 +13,39 @@
 
 	<div class="h-spacer"></div>
 
-	<div class="content">
+	<div class="codoshop-content">
 
-	  <div class="left-column" ng-attr-resizable="e">
+		<div ng-repeat-start="column in codoshopVM.columns" ng-class="column.class" class="codoshop-column" ng-style="column.style">
 
-	  <section class="fc-g-1">
-		<!-- <h3 style="text-align: left;"><span>Files</span></h3> -->
-		<div class="top-bar"></div>
+			<section ng-repeat-start="section in column.sections" class="fc-g-1">
+			<!-- <h3 style="text-align: left;"><span>Files</span></h3>  -->
 
-		<nav>
-		</nav>
+				<nav ng-if="section.tabs != false">
+<!-- 					<ng-include src="'components/sectionTabs/sectionTabs.html'">
+					</ng-include> -->
+					<div class="codoshop-top-bar"></div>
+					<section-tabs data-tabs="{{section.articles}}">
+					</section-tabs>
+				</nav>
 
-		<div class="h-spacer"></div>
-
-		<ul class="codoshop-projects-button-row" ng-attr-button-row>
-		</ul>
-
-		<div class="h-spacer"></div>
-
-		<div class="codoshop-project-scrollview fp fp-d-c fc-g-1">
-			<div ng-repeat="project in projects" ng-class="{expanded: project.status == 'expanded', 'codoshop-project': true}" ng-attr-project-menu>
-				<div class="divider-block">
+				<article 	ng-repeat="article in section.articles"
+							ng-show="codoshopVM.isSelected(article, section.articles)">
 					
-						<div>
-							<div>
-								<div class="icon fa fa-cube"></div>
-							</div>
-						</div>
-						<!-- <div></div> fa fa-cube --> 
-						<form role="form">
-							<input id="projectName" class="large" type="text" placeholder="Untitled" value="{{project.name}}">
-						</form>
-						<div>		
-							<button type="button" class="" ng-click="openToggle()"><span class="fa fa-caret-down"></span></button>
-						</div>
-				
-				</div>
+					<ng-include src="article.templateUrl">
+					</ng-include>
+					
+				</article>
 
-			
+			</section>
 
-				<div class="h-spacer light" style="height: 20px; background-color: #3b4b64">
-					Add folder
-				</div>
+			<div ng-repeat-end class="h-spacer"></div>
 
-				<div class="h-spacer"></div>
-
-				<div class="fp fp-d-c" ng-show="project.status == 'expanded'" class="animate-slide">
-
-
-					<div class="bg-color-2" ng-style="{'height': lhc( 0.25 ), 'flex-shrink': 0}"></div>
-
-					<script type="text/ng-template" id="node_template.html">
-						<a ng-click="click()" class="bg-color-1" ng-attr-node href="javascript:void(0)">
-							<div></div>
-							<div class="arrow"></div>
-							<div class="icon"></div>
-							<div class="label">{{node.name}}</div>
-						</a>
-						<ul ng-show="node.status == 'open'" class="animate-slide">
-							<li ng-repeat="node in node.nodes" ng-class="{dir: node.type == 'dir'}" ng-include="'node_template.html'"></li>
-						</ul>
-					</script>
-					<ul class="codoshop-tree" ng-controller="zTree">
-						<li ng-repeat="node in project.dirTree" ng-class="{dir: node.type == 'dir', open: node.status == 'open'}" ng-include="'node_template.html'"></li>
-					</ul>
-
-
-				</div>
-			</div>
-			<div class="bg-color-1 fc-g-1"></div>
 		</div>
 
 
-	  </section>
 
-<!--      <div class="h-spacer"></div>
+	  <div ng-repeat-end class="v-spacer"></div>
 
-	  <section>
-	  <h3 style="text-align: left;">
-		<span>Other Stuff</span>
-	  </h3>
-	  </section> -->
-	  </div>
-
-
-
-	  <div class="v-spacer" ng-attr-hdrag></div>
-
-
-
-	  <div class="middle-column">
-			<!-- <h4>Detected as SCSS</h4> -->
-			<section class="text-editor fc-g-1">
-
-				<ul class="codoshop-text-editor-tabs" ng-attr-hsort ng-attr-top-tabs>
-					<li ng-repeat="file in openFiles" ng-class="{ tab: true, selected: file.selected }">
-							<a href="javascript:void(0)" ng-click="select($index)"><span>{{file.name}}</span></a>
-							<a href="javascript:void(0)" ng-click="close($index)"><div></div></a>
-					</li>
-					<li><a href="javascript:void(0)" ng-click="newFile()" ng-attr-tooltip title="new file"><span>+</span></a></li>
-					<li><a href="javascript:void(0)"></a></li>
-				</ul>
-
-				<div class="codoshop-text-editor-content">
-<!-- 					<div ng-repeat="file in openFiles" ng-show="file.selected == true" ng-attr-codemirror>
-					</div> -->
-					<ui-codemirror ng-repeat="file in openFiles" ng-show="file.selected == true" ui-codemirror-opts="editorOptions" ng-attr-codemirror></ui-codemirror>
-				</div>
-
-			</section>
-	  </div>
-
-
-
-	  <div class="v-spacer"></div>
-
-
-
-	  <div class="right-column" ng-attr-resizable="w">
-
-	  	<section class="" style="flex-basis: 13rem;" ng-attr-resizable="s">
-
-		  <div class="top-bar"></div>
-		  <ul class="tabss" ng-attr-hsort ng-attr-right-tabs1>
-			<li class="{{(tab.selected==true) ? 'selected' : ''}}" ng-repeat="tab in rightTabs1.model" ng-attr-tab>
-			  <a href="javascript:void(0)">{{tab.title}}</a>
-			</li>
-			<li><a href="javascript:void(0)"></a></li>
-		  </ul>
-
-			<!-- <div class="light-block ztree details" ng-attr-ztree2></div> -->
-			<div class="colors-section light-block fc-g-1" ng-attr-colorss style="padding: 7px;">
-			
-				
-				<div class="fp fp-wrap">
-					<div ng-repeat="c in colors" class="color-cell fp fp-center" style="width: 21px; height: 21px;">
-						<div ng-style="{'background-color': c.string}"></div>
-					</div>
-					<div ng-repeat="c in fillers" class="color-cell fp fp-center" style="width: 21px; height: 21px;">
-						<div ng-style="{'background-color': 'none'}"></div>
-					</div>
-				</div>
-
-				<div></div>
-				<h3>[<span class="bold light-violet">{{colors.length}}</span> colors detected]  <span class="fa fa-cog" style="float: none;"></span></h3>
-
-			</div>
-		</section>
-
-		<div class="h-spacer"></div>
-
-
-
-		<section class="fc-g-1">
-
-		  <div class="top-bar"></div>
-		  <ul class="tabss" ng-attr-hsort ng-attr-right-tabs2>
-			<li ng-class="{selected: tab.selected}" ng-repeat="tab in rightTabs2.model" ng-attr-tab>
-				<a href="javascript:void(0)">{{tab.title}}</a>
-			</li>
-			<li><a href="javascript:void(0)"></a></li>
-		  </ul>
-	
-			<!-- <div class="bg-color-3" style="height: 5px; flex-grow: 0;"></div> -->
-			<div class="bg-color-1" style="flex-grow: 0; flex-shrink: 0;">
-				<!-- <h3>viewmode</h3> -->
-				<ul class="text-tabs">
-					<li style="flex-grow: 0;"></li>
-					<li><a ng-class="{selected: true}" href="javascript:void(0)"><div><span>map</span></div></a></li>
-					<!-- <li style="flex-grow: 1;">|</li> -->
-					<li><a href="javascript:void(0)"><div><span>tree</span></div></a></li>
-					<li style="flex-grow: 0;"></li>
-				</ul>
-			</div>
-		  <div class="bg-color-1 fc-g-1" ng-attr-outline>
-				<script type="text/ng-template" id="node_template2.html">
-					<a ng-class="{roww: true, dir: node.nodes && node.nodes.length > 0, open: node.status == 'open', closed: node.status == 'closed'}" ng-click="click()" ng-attr-node href="javascript:void(0)">
-						<div class="arrow"></div><div class="icon"></div><div class="label">{{node.name}}</div></a>
-					<ul><li ng-repeat="node in node.nodes" ng-include="'node_template2.html'"></li></ul>
-				</script>
-				<ul class="ztree" ng-controller="zTree">
-					<li ng-repeat="node in treee" ng-include="'node_template2.html'"></li>
-				</ul>
-		  </div>
-		</section>
-		
-	  </div>
 
 
 	</div>

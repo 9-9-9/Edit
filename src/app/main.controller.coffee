@@ -100,7 +100,9 @@ angular
 					,
 						name: 'Other'
 					]
-				],
+				]
+				style:
+					width: '220px'
 			,
 				sections: [
 					tabs: false
@@ -109,7 +111,7 @@ angular
 						templateUrl: 'components/textEditor/textEditor.html'
 					]
 				]
-				class: "fc-g-1"
+				class: 'fc-g-1'
 			,
 				sections: [
 					articles: [
@@ -123,6 +125,9 @@ angular
 					]
 				]
 			]
+
+			vm.isSelected = (i, arr) ->
+				i.selected == true or (not arr.some( (e,i,a) -> e.selected == true ) and i == arr[0])
 
 
 
@@ -140,36 +145,36 @@ angular
 			return
 
 			
-	.directive 'leftTabs', () ->
-		(scope, el, attrs) ->
+	# .directive 'leftTabs', () ->
+	# 	(scope, el, attrs) ->
 
-			scope.leftTabs =
-				model: [
-					title: 'Project'
-					selected: true
-				,
-					title: 'File'
-					selected: false
-				]
-			return
-	.directive 'rightTabs1', () ->
-		(scope, el, attrs) ->
+	# 		scope.leftTabs =
+	# 			model: [
+	# 				title: 'Project'
+	# 				selected: true
+	# 			,
+	# 				title: 'File'
+	# 				selected: false
+	# 			]
+	# 		return
+	# .directive 'rightTabs1', () ->
+	# 	(scope, el, attrs) ->
 
-			scope.rightTabs1 =
-				model: [
-					title: 'Colors'
-					selected: true
-				]
-			return
-	.directive 'rightTabs2', () ->
-		(scope, el, attrs) ->
+	# 		scope.rightTabs1 =
+	# 			model: [
+	# 				title: 'Colors'
+	# 				selected: true
+	# 			]
+	# 		return
+	# .directive 'rightTabs2', () ->
+	# 	(scope, el, attrs) ->
 
-			scope.rightTabs2 =
-				model: [
-					title: 'Outline'
-					selected: true
-				]
-			return
+	# 		scope.rightTabs2 =
+	# 			model: [
+	# 				title: 'Outline'
+	# 				selected: true
+	# 			]
+	# 		return
 	.directive 'topTabs', () ->
 		require: '^codoshopp'
 		link: (scope, el, attrs, ctrl) ->
@@ -278,26 +283,18 @@ angular
 
 			return
 
-.directive 'projectMenu', () ->
-	controller: ($scope) ->
-		$scope.status =
-			opened: false
-		return
-	link: (scope, el, attrs) ->
-		# scope.status =
-		# 	opened: false
-		scope.openToggle = do (scope) -> (o = scope.project.status) ->
-			scope.project.status = if o == 'expanded' then 'contracted' else 'expanded'
-			return
-		return
+
 
 .animation '.animate-slide', () ->
 	addClass: (el, className, done) ->
 		if className == 'ng-hide'
 			
 			$(el).slideUp
-				duration: 200
+				duration: 150
 				complete: done
+				progress: do (el) -> (p,n,r) ->
+					$(el).trigger 'animationProgress'
+					return
 
 		(isCancelled) ->
 			# $(el).stop() if isCancelled
@@ -305,10 +302,13 @@ angular
 	removeClass: (el, className, done) ->
 		if className == 'ng-hide'
 
-			# $(el).hide()
+			$(el).hide() if $(el).css('display') == 'none'
 			$(el).slideDown
-				duration: 200
+				duration: 150
 				complete: done
+				progress: do (el) -> (p,n,r) ->
+					$(el).trigger 'animationProgress'
+					return
 
 		(isCancelled) ->
 			# $(el).stop() if isCancelled

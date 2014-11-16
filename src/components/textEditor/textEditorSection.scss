@@ -73,7 +73,7 @@ ul.codoshop-text-editor-tabs {
 		}
 		
 		&.selected {
-			background-color: $color-bg-4;
+			background-color: $bg-color-2;
 			> a:first-child {
 				color: $light-violet;
 			}
@@ -86,7 +86,10 @@ ul.codoshop-text-editor-tabs {
 			}
 		}
 		&:not(.selected) {
-			background-color: $color-bg-2;
+			background-color: $bg-color-1;
+			&:hover {
+				background-color: lighten($bg-color-1, 5) !important;
+			}
 			> a:first-child {
 				// color: rgba(#fff, 0.4);
 				color: $silver;
@@ -114,9 +117,9 @@ ul.codoshop-text-editor-tabs {
 			> a {
 				padding: 0.15em 7px 0.17em 7px;
 				position: relative;
-				&:hover {
-					background-color: $color-bg-2 !important;
-				}
+				// &:hover {
+				// 	background-color: $color-bg-2 !important;
+				// }
 				span {
 					position: relative;
 					top: 0px;
@@ -135,7 +138,7 @@ ul.codoshop-text-editor-tabs {
 			width: 1px;
 			flex-grow: 0;
 			flex-shrink: 0;
-			background-color: $bg-color-2;
+			background-color: $dark;
 		}
 	}
 }

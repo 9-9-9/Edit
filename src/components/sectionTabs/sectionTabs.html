@@ -1,6 +1,8 @@
-<ul class="tabss" ng-attr-hsort ng-attr-left-tabs>
-	<li class="{{(tab.selected==true) ? 'selected' : ''}}" ng-repeat="tab in leftTabs.model">
-		<a href="javascript:void(0)"><span>{{tab.title}}</span></a>
+
+
+<ul class="codoshop-section-tabs" ng-attr-hsort>
+	<li ng-repeat="tab in tabs" ng-selected="codoshopVM.isSelected(tab, tabs)">
+		<a href="javascript:void(0)"><span>{{tab.name}}</span></a>
 	</li>
 	<li><a href="javascript:void(0)"></a></li>
 </ul>

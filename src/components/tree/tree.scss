@@ -64,7 +64,7 @@ ul.codoshop-tree {
 			
 
 			&:hover {
-				background-color: lighten($bg-color-1, 5);
+				background-color: lighten($bg-color-1, 5) !important;
 			}
 			> div {
 				flex-shrink: 0;
