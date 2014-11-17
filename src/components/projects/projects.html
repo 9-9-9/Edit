@@ -1,9 +1,9 @@
-<div class="h-spacer"></div>
+<!-- <div class="h-spacer"></div> -->
 
-<ul class="codoshop-projects-button-row" ng-attr-button-row>
+<ul class="codoshop-projects-button-row" ng-attr-codoshop-projects-button-row>
 </ul>
 
-<div class="h-spacer"></div>
+<!-- <div class="h-spacer thick"></div> -->
 
 <div class="codoshop-project-scrollview" ng-attr-codoshop-projects>
 
@@ -28,7 +28,7 @@
 					<input id="projectName" class="large" type="text" placeholder="Untitled" value="{{project.name}}">
 				</form>
 
-				<button type="button" class="" ng-click="openToggle()"><span class="fa fa-caret-dowwn"></span></button>
+				<!-- <button type="button" class="" ng-click="openToggle()"><span class="fa fa-caret-dowwn"></span></button> -->
 		</div>
 
 		<div class="codoshop-project-subheader">../asdas/asdas/{{project.name}}</div>
@@ -39,9 +39,11 @@
 <!-- 				<div class="fa fa-folder-o"></div><div>43 &nbsp;</div>
 				<div class="fa fa-file-o"></div><div>1 &nbsp;</div>
 				<div class="fa fa-file-text"></div><div>3 &nbsp;</div> -->
-				<div class="fc-g-1"></div>
-				<div class="fa fa-gears"></div>
-				<button type="button" class="" ng-click="openToggle()"><span class="fa fa-caret-down"></span></button>
+<!-- 				<div class="fc-g-1"></div>
+				<div class="fa fa-gears"></div> -->
+				<button type="button" class="up" ng-click="openToggle()">
+					<span ng-class="{'fa-caret-down': project.dirTree && project.dirTree.length > 0, 'fa-cog': !project.dirTree || project.dirTree.length == 0 }" class="fa"></span>
+				</button>
 			
 		</div>
 
@@ -51,7 +53,11 @@
 		<!-- File directory tree -->
 		<div ng-show="project.status == 'expanded'" class="fp fp-fd-c animate-slide">
 
-
+			<div class="bg-color-1 fp fp-jc-c fc-s-0">
+				<button type="button" class="down" ng-click="openToggle()">
+					<span class="fa fa-cog"></span>
+				</button>
+			</div>
 			<!-- <div class="bg-color-1" ng-style="{'height': lhc( 0.25 ), 'flex-shrink': 0}"></div> -->
 
 			<script type="text/ng-template" id="node_template.html">

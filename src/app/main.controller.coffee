@@ -9,7 +9,7 @@
 
 angular
 	.module('codoshop')
-	.directive 'codoshopp', () ->
+	.directive 'codoshop', () ->
 		templateUrl: 'app/main.html'
 		controller: ($scope) -> do (vm = null) =>
 
@@ -84,6 +84,10 @@ angular
 				$scope.openFiles.push newFile
 				return
 
+			@newProject = do ($scope) -> () -> do (newProject = null) ->
+				$scope.projects.push
+					name: 'Untitled'
+				return
 
 			# TODO: See if it's possible to avoid using scope here
 			$scope.windo =
@@ -176,7 +180,7 @@ angular
 	# 			]
 	# 		return
 	.directive 'topTabs', () ->
-		require: '^codoshopp'
+		require: '^codoshop'
 		link: (scope, el, attrs, ctrl) ->
 			ctrl = [].concat(ctrl)[0]
 			# scope.isSelected = do (scope) -> (i) ->
@@ -211,7 +215,6 @@ angular
 			return
 
 	.directive 'resizable', () ->
-		# require: '^codoshopp'
 		link: (scope, el, attrs, ctrls) -> do (direction = attrs.resizable) ->
 
 			el.resizable
@@ -230,58 +233,14 @@ angular
 			el.sortable
 				axis: 'x'
 			return
-	.directive 'codemirror', () ->
-		require: '^codoshopp'
-		link: (scope, el, attrs, ctrl) -> do (resize = null, mode = scope.file.mode) ->
+	# .directive 'codemirror', () ->
+	# 	require: '^codoshop'
+	# 	link: (scope, el, attrs, ctrl) -> do (resize = null, mode = scope.file.mode) ->
 
-			ctrl = [].concat(ctrl)[0]
-			# resize = do (el, w = null, h = null) -> (myCM) ->
-			# 	w = el.parent().css('width')
-			# 	h = el.parent().css('height')
-			# 	el.css 'width', w
-			# 	el.css 'height', h
-			# 	return
+			
 
 
-			# scope.$watch 'windo.w', (newVal, oldVal, scope) ->
-			# 	if scope.file.selected == true && scope.myCM
-			# 		resize()
-			# 	return
-
-
-			# if mode == 'scss'
-			# 	mode = 
-			# 		name: 'css'
-			# 		scss: true
-			# else if mode == 'html'
-			# 	mode = 'htmlmixed'
-			# else if mode == 'js'
-			# 	mode = 'javascript'
-
-			##### Replace scope with ctrl
-			# scope.myCM = CodeMirror( el[0],
-			# 	value:  scope.file.content
-			# 	mode: mode
-			# 	lineNumbers: true
-			# 	foldGutter: true
-			# 	gutters: ['CodeMirror-linenumbers', "CodeMirror-foldgutter"]
-			# 	theme: 'night'
-			# )
-			# scope.myCM.setSize '100%', '100%'
-			# resize()
-			# scope.myCM.refresh()
-			# scope.cmLookup.set scope.file, scope.myCM
-
-			scope.editorOptions =
-				value		: scope.file.content
-				mode 		: mode
-				lineNumbers : true
-				foldGutter 	: true
-				gutters		: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter']
-				theme		: 'night'
-
-
-			return
+	# 		return
 
 
 

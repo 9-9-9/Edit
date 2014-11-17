@@ -21,5 +21,6 @@ angular
 		'codoshop-sectionTabs',
 		'codoshop-projects',
 		'codoshop-colors',
-		'codoshop-outline'
+		'codoshop-outline',
+		'codoshopTextEditor'
 	])

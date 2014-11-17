@@ -42,7 +42,8 @@ ul.codoshop-section-tabs {
 		margin: 0;
 		padding: 0;
 		display: flex;
-		flex-direction: column;
+
+		// flex-direction: column;
 		overflow: hidden;
 		letter-spacing: inherit;
 		text-transform: inherit;
@@ -50,21 +51,19 @@ ul.codoshop-section-tabs {
 		
 		// line-height: 15px;
 		// text-align: center;
-		&:before {
-			content: "";
-			height: 1px;
-		}
+
 		&:after {
-			content: none;
-			height: 1px;
+			content: "";
+			width: 1px;
+			background-color: rgba(#444, 0.9);
 		}
 		
 
-		> a {
+		> div > a {
 			display: flex;
 			position: relative;
 			// align-items: center;
-			padding: ($lhc * 0.05) ($lhc * 0.25) ($lhc * 0.05) ($lhc * 0.25);
+			padding: 1px ($lhc * 0.25) 1px ($lhc * 0.25);
 			
 			text-transform: inherit;
 			
@@ -76,39 +75,39 @@ ul.codoshop-section-tabs {
 			
 		}
 		&[selected="selected"] {
-			> a, > div {
+			> div > a {
 				color: rgba(#fff, 0.6);
 				background-color: $bg-color-3;
 				// border-top: 1px solid rgba(#777, 0.9);
-				&:last-child {
-					// border-right: 1px solid $dark;
-				}
+				// &:last-child {
+				// 	// border-right: 1px solid $dark;
+				// }
 			}
-			&:before {
-				background-color: rgba(#444, 0.9);
-			}
+			// &:before {
+			// 	background-color: rgba(#444, 0.9);
+			// }
 			&:after {
 				background-color: $bg-color-1;
 				// border-right: 1px solid $dark;
 			}
 		}
 		&:not([selected="selected"]) {
-			> a, > div {
+			> div > a {
 				color: $silver;
-				background-color: $bg-color-2;
+				background-color: $bg-color-1;
 				// &:last-child {
 				// 	// border-right: 1px solid $less-dark;
 				// }
 			}
 
 			&:not(:last-child) {
-				> a:hover, > div:hover {
+				> div > a:hover {
 					background-color: darken($bg-color-2, 4);
 				}
-				&:before {
-					// content: none;
-					background-color: rgba(#444, 0.9);
-				}
+				// &:before {
+				// 	// content: none;
+				// 	background-color: rgba(#444, 0.9);
+				// }
 			}
 			&:last-child {
 				> a {
@@ -125,25 +124,37 @@ ul.codoshop-section-tabs {
 
 
 		&:nth-last-child(2) {
-			> a, > div {
-				&:last-child {
-					border-right: 0;
-				}
+			&:after {
+				content: none;
 			}
 		}
 
 		// end spacer
 		&:last-child {
+			// display: flex;
 			flex-grow: 1;
-			flex-shrink: 0;
-			flex-basis: 0px;
-			overflow: hidden;
-			
-			> a, > div {
-				flex-grow: 1;
-				border-left: 1px solid rgba(#444, 0.9);
-				border-right: 0 !important;
+			flex-shrink: 1;
+			flex-basis: 0;
+			// overflow: hidden;
+
+			&:after, &:before {
+				content: "";
 			}
+			&:before {
+				width: 1px;
+				flex-shrink: 0;
+				background-color: rgba(#444, 0.9);
+			}
+			&:after {
+				flex-grow: 1;
+				background-color: $bg-color-2;
+			}
+			
+			// > a, > div {
+			// 	flex-grow: 1;
+			// 	border-left: 1px solid rgba(#444, 0.9);
+			// 	border-right: 0 !important;
+			// }
 			// &:after {
 			// 	background-color: rgba(lighten(#555, 7), $master-opacity);
 			// 	border-right: 0;

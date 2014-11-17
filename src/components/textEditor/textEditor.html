@@ -4,11 +4,11 @@
 			<a href="javascript:void(0)" ng-click="close($index)"><div></div></a>
 	</li>
 	<li><a href="javascript:void(0)" ng-click="newFile()" ng-attr-tooltip title="new file"><span>+</span></a></li>
-	<li><a href="javascript:void(0)"></a></li>
+	<li></li>
 </ul>
 
 <div class="codoshop-text-editor-content">
 <!-- 					<div ng-repeat="file in openFiles" ng-show="file.selected == true" ng-attr-codemirror>
 	</div> -->
-	<ui-codemirror ng-repeat="file in openFiles" ng-show="file.selected == true" ui-codemirror-opts="editorOptions" ng-attr-codemirror></ui-codemirror>
+	<ui-codemirror ng-repeat="file in openFiles" ng-show="file.selected == true" ui-codemirror-opts="editorOptions" ng-attr-codoshop-text-editor></ui-codemirror>
 </div>

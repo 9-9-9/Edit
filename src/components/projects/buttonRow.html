@@ -1,6 +1,12 @@
 
-<li>(2 projects)</li>
+<li>{{projects.length}} projects</li>
+<li></li>
+<!-- TODO: Fix so that it doesn't run filter twice -->
+<li><a href="javascript:void(0)" ng-click="toggleAll()">
+	<span ng-class="{'fa-compress': (expandedProjects().length > 0), 'fa-expand': (expandedProjects().length == 0 && contractedProjects().length > 0)}" class="fa"></span>
+	</a>
+</li>
 <li></li>
 <li><a href="javascript:void(0)"><span class="fa fa-folder-open"></span></a></li>
 <li></li>
-<li><a href="javascript:void(0)">+</a></li>
+<li><a href="javascript:void(0)" ng-click="newProject()">+</a></li>

@@ -166,10 +166,10 @@ html {
 	// $bg-color-1
 
 	.h-spacer, .v-spacer {
-		background-color: $dark;
+		background-color: $gap-color-1;
 		flex-shrink: 0;
 
-		&.light {
+		&.dark {
 			// height: 1px !important;
 			background-color: rgba(#aaa, 0.5);
 		}
@@ -178,10 +178,16 @@ html {
 	// 	background-color: $silver;
 	// }
 	.h-spacer {
-		@include size(100% 1px);
+		height: 1px;
+		&.thick {
+			height: 2px;
+		}
 	}
 	.v-spacer {
-		@include size(1px auto);
+		width: 1px;
+		&.thick {
+			width: 2px;
+		}
 	}
 
 
@@ -294,15 +300,18 @@ html {
 			flex-shrink: 0;
 		}
 
-		.left-column, .right-column {
-			width: $right-column-width;
-			// flex-grow: 0;
-			flex-shrink: 0;
-			padding: 0px 0 0px 0px;
+		// .left-column, .right-column {
+		// 	width: $right-column-width;
+		// 	// flex-grow: 0;
+		// 	flex-shrink: 0;
+		// 	padding: 0px 0 0px 0px;
 			
-			//         -webkit-mask-image: -webkit-linear-gradient(top, rgba(#000,1), rgba(#000,0.7) 80%, rgba(#fff,1));
+		// 	//         -webkit-mask-image: -webkit-linear-gradient(top, rgba(#000,1), rgba(#000,0.7) 80%, rgba(#fff,1));
 
 
+		// }
+		> .v-spacer:last-child {
+			display: none;
 		}
 
 	}
@@ -324,6 +333,8 @@ html {
 		display: flex;
 		flex-direction: column;
 		flex-grow: 1;
+		position: relative;
+		
 		> ng-include {
 			display: flex;
 			flex-direction: column;
