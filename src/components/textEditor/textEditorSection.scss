@@ -5,7 +5,7 @@
 ul.codoshop-text-editor-tabs {
 	// border-bottom: 1px solid rgba(#000, 0.9);
 	display: flex;
-	flex-grow: 0;
+	// flex-grow: 0;
 	flex-shrink: 0;
 	font-size: $fsb * 0.85;
 	font-weight: 200;
@@ -20,7 +20,7 @@ ul.codoshop-text-editor-tabs {
 			content: "";
 			width: 1px;
 			flex-shrink: 0;
-			// background-color: $gap-color-1;
+			// background-color: $bg-color-4;
 		}
 
 		> a {
@@ -76,7 +76,6 @@ ul.codoshop-text-editor-tabs {
 		}
 		
 		&.selected {
-			background-color: $bg-color-2;
 			> a:first-child {
 				color: $light-violet;
 			}
@@ -87,9 +86,12 @@ ul.codoshop-text-editor-tabs {
 					}
 				}
 			}
+			> a {
+				background-color: $bg-color-2;
+			}
 		}
 		&:not(.selected) {
-			background-color: $bg-color-1;
+			
 			&:not(:empty):hover {
 				> a {
 					background-color: lighten($bg-color-1, 2) !important;
@@ -107,7 +109,9 @@ ul.codoshop-text-editor-tabs {
 					}
 				}
 			}
-			
+			> a {
+				background-color: $bg-color-1;
+			}
 			// > a, > div {
 				
 			// }
@@ -137,6 +141,7 @@ ul.codoshop-text-editor-tabs {
 		}
 		&:last-child {
 			flex: 1 0 0px;
+			background-color: $bg-color-1;
 			overflow: hidden;
 		}
 
@@ -147,7 +152,7 @@ ul.codoshop-text-editor-tabs {
 	position: relative;
 	// box-shadow: 0px 0px 20px rgba(#000, 0.2); 5701ff 17151d 00fff8 12111f
 	padding: 0 0 0 0;
-	border: 1px solid rgba(#000, 0.9);
+	// border: 1px solid rgba(#000, 0.9);
 	flex-grow: 1;
 
 	// background-color: rgba(lighten($bg-color, 5), 0.9);

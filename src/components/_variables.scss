@@ -15,7 +15,7 @@ $font-family-serif:       	Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:   	Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:        	$font-family-sans-serif !default;
 
-$master-opacity: 0.94;
+$master-opacity: 0.85;
 
 //** Background for `.codoshop`.
 $body-bg:               #fff !default;
@@ -28,7 +28,8 @@ $link-color:            #428bca !default;
 $link-hover-color:      darken($link-color, 15%) !default;
 
 // $bg-color-1: #17151d;
-$bg-color-1: rgba(darken(#666, 8), $master-opacity - 0.05);
+// $bg-color-1: rgba(darken(#666, 8), $master-opacity - 0.05);
+$bg-color-1: rgba(darken(#666, 12), $master-opacity - 0.05);
 $bg-color-2: rgba(lighten(#555, 6), $master-opacity - 0.05);
 
 $bg-color-3: rgba(lighten(#1f2733, 30), $master-opacity - 0.05);
@@ -43,8 +44,8 @@ $light-silver: rgba(#ccc, 0.3);
 $silver: rgba(#999, 0.9);
 $silver-2: rgba(#999, 0.7);
 
-$gap-color-1: rgba(#ddd, 0.40);
-
+$gap-color-1: rgba(#aaa, 0.20);
+$gap-color-2: transparent;
 // $light-blue: rgba(#72f4ff, $master-opacity);
 // $light-blue: rgba(#81fff8, $master-opacity);
 $light-blue: rgba(#90dbea, $master-opacity);

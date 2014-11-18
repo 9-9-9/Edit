@@ -91,12 +91,12 @@ html {
 		font-size: inherit;
 		line-height: inherit;
 	}
-		svg {
-			path {
-				shape-rendering: crispEdges;
-			}
+	svg {
+		path {
+			shape-rendering: crispEdges;
 		}
-		a {
+	}
+	a {
 		color: $link-color;
 		text-decoration: none;
 
@@ -171,7 +171,7 @@ html {
 
 		&.dark {
 			// height: 1px !important;
-			background-color: rgba(#aaa, 0.5);
+			background-color: rgba(#aaa, 0.0);
 		}
 	}
 	// section .h-spacer, section .v-spacer {

@@ -1,13 +1,13 @@
-<!-- <div class="h-spacer"></div> -->
+<div class="h-spacer dark"></div>
 
 <ul class="codoshop-projects-button-row" ng-attr-codoshop-projects-button-row>
 </ul>
 
-<!-- <div class="h-spacer thick"></div> -->
+<div class="h-spacer thick"></div>
 
-<div class="codoshop-project-scrollview" ng-attr-codoshop-projects>
+<div class="codoshop-project-scrollview" ng-attr-codoshop-projects ng-attr-vsort>
 
-	<!-- <div class="bg-color-1 fc-s-0" style="height: 5px;"></div> -->
+	<!-- <div></div> -->
 	<!-- <div class="h-spacer" style="height: 1px; background-color: #777;"></div> -->
 
 	<div ng-repeat-start="project in projects" ng-class="{expanded: project.status == 'expanded', 'codoshop-project': true}" ng-attr-codoshop-project>
@@ -35,15 +35,16 @@
 		<div class="codoshop-project-details">
 			<!-- <div class="icon fa fa-cube"></div> -->
 			
-				<!-- <div class="fa fa-cube"></div> -->
-<!-- 				<div class="fa fa-folder-o"></div><div>43 &nbsp;</div>
-				<div class="fa fa-file-o"></div><div>1 &nbsp;</div>
-				<div class="fa fa-file-text"></div><div>3 &nbsp;</div> -->
-<!-- 				<div class="fc-g-1"></div>
-				<div class="fa fa-gears"></div> -->
-				<button type="button" class="up" ng-click="openToggle()">
-					<span ng-class="{'fa-caret-down': project.dirTree && project.dirTree.length > 0, 'fa-cog': !project.dirTree || project.dirTree.length == 0 }" class="fa"></span>
+				<button ng-show="project.dirTree && project.dirTree.length > 0" type="button" class="up" ng-click="" style="opacity: 0;">
+					<span class="fa fa-cog"></span>
 				</button>
+				<button type="button" class="up" ng-click="">
+					<span class="fa fa-cog"></span>
+				</button>
+				<button ng-show="project.dirTree && project.dirTree.length > 0" type="button" class="up" ng-click="openToggle()">
+					<div class="fa fa-arrow-down"></div>
+				</button>
+
 			
 		</div>
 
@@ -53,11 +54,7 @@
 		<!-- File directory tree -->
 		<div ng-show="project.status == 'expanded'" class="fp fp-fd-c animate-slide">
 
-			<div class="bg-color-1 fp fp-jc-c fc-s-0">
-				<button type="button" class="down" ng-click="openToggle()">
-					<span class="fa fa-cog"></span>
-				</button>
-			</div>
+
 			<!-- <div class="bg-color-1" ng-style="{'height': lhc( 0.25 ), 'flex-shrink': 0}"></div> -->
 
 			<script type="text/ng-template" id="node_template.html">

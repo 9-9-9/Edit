@@ -40,11 +40,7 @@ angular
 				
 
 			$scope.$watchCollection 'openFiles', do (ctrl = @) -> (newItems, oldItems, scope) ->
-				# console.log newItems
-				# console.log oldItems
-				# $scope.$watch 'openFiles['+pos+'].start_time', () ->
 
-				# 	return
 				missingItems = oldItems.filter do (newItems) -> (oldI) ->
 					newItems.indexOf(oldI) == -1
 
@@ -149,36 +145,6 @@ angular
 			return
 
 			
-	# .directive 'leftTabs', () ->
-	# 	(scope, el, attrs) ->
-
-	# 		scope.leftTabs =
-	# 			model: [
-	# 				title: 'Project'
-	# 				selected: true
-	# 			,
-	# 				title: 'File'
-	# 				selected: false
-	# 			]
-	# 		return
-	# .directive 'rightTabs1', () ->
-	# 	(scope, el, attrs) ->
-
-	# 		scope.rightTabs1 =
-	# 			model: [
-	# 				title: 'Colors'
-	# 				selected: true
-	# 			]
-	# 		return
-	# .directive 'rightTabs2', () ->
-	# 	(scope, el, attrs) ->
-
-	# 		scope.rightTabs2 =
-	# 			model: [
-	# 				title: 'Outline'
-	# 				selected: true
-	# 			]
-	# 		return
 	.directive 'topTabs', () ->
 		require: '^codoshop'
 		link: (scope, el, attrs, ctrl) ->
@@ -201,11 +167,6 @@ angular
 				return
 
 			scope.close = do (scope) -> (i) -> do (f = scope.openFiles[i]) ->
-				# if scope.openFiles.length > 1 && f.selected == true
-				# 	if i + 1 == scope.openFiles.length
-				# 		scope.openFiles[i - 1].selected = true
-				# 	else
-				# 		scope.openFiles[i + 1].selected = true
 				scope.openFiles.splice i, 1
 				return
 
@@ -232,6 +193,11 @@ angular
 		(scope, el, attrs) ->
 			el.sortable
 				axis: 'x'
+			return
+	.directive 'vsort', () ->
+		(scope, el, attrs) ->
+			el.sortable
+				axis: 'y'
 			return
 	# .directive 'codemirror', () ->
 	# 	require: '^codoshop'

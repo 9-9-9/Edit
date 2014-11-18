@@ -39,7 +39,8 @@ angular.module('codoshop-projects', ['codoshop-tree'])
 		link: (scope, el, attrs, ctrls) ->
 			# ctrl = [].concat(ctrls)[0]
 
-
+			Array::move = (from, to) ->
+				@splice to, 0, @splice(from,1)[0]
 			return
 	.directive 'codoshopProject', () ->
 		# controller: ($scope) ->

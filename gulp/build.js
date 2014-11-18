@@ -50,8 +50,8 @@ gulp.task('partials', function () {
 
 gulp.task('html', ['styles', 'scripts', 'partials'], function () {
   var htmlFilter = $.filter('*.html');
-  var jsFilter = $.filter('**/*.js');
-  var cssFilter = $.filter('**/*.css');
+  var jsFilter = $.filter('{app,components}/**/*.js');
+  var cssFilter = $.filter('{app,components}/**/*.css');
   var assets;
 
   return gulp.src('src/*.html')
@@ -63,13 +63,16 @@ gulp.task('html', ['styles', 'scripts', 'partials'], function () {
     // }))
     .pipe(assets = $.useref.assets())
     .pipe($.rev())
+
     .pipe(jsFilter)
     .pipe($.ngAnnotate())
     .pipe($.uglify({preserveComments: $.uglifySaveLicense}))
     .pipe(jsFilter.restore())
+
     .pipe(cssFilter)
     .pipe($.csso())
     .pipe(cssFilter.restore())
+
     .pipe(assets.restore())
     .pipe($.useref())
     .pipe($.revReplace())
