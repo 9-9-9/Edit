@@ -1,10 +1,12 @@
 'use strict';
 
-var gulp = require('gulp');
+var gulp    = require('gulp');
 
-var $ = require('gulp-load-plugins')({
-  pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
+var $      = require('gulp-load-plugins')({
+  pattern: ['gulp-*', 'browser-sync', 'main-bower-files', 'uglify-save-license', 'del']
 });
+
+var reload = $.browserSync.reload;
 
 function handleError(err) {
   console.error(err.toString());
@@ -12,56 +14,79 @@ function handleError(err) {
 }
 
 gulp.task('styles', ['wiredep'],  function () {
-  return gulp.src('src/**/*.scss')
-    .pipe($.rubySass({style: 'expanded'}))
+  var scssFilter = $.filter('**/*.scss')
+
+  return gulp.src('src/**/*.{css,scss}')
+    .pipe(scssFilter)
+    .pipe($.rubySass({
+      sourcemap: false,
+      sourcemapPath: false
+    }))
+    .pipe($.ignore.exclude('**/*.map'))
+    .pipe(scssFilter.restore())
+    .pipe($.autoprefixer({
+      browsers: ['last 1 version']
+    }))
     .on('error', handleError)
-    .pipe($.autoprefixer('last 1 version'))
     .pipe(gulp.dest('.tmp'))
-    .pipe($.size());
+    .pipe($.size())
+    .pipe(reload({stream:true}));
 });
 
-gulp.task('coffee', function() {
-  return gulp.src('src/**/*.coffee')
+
+gulp.task('scripts', function () {
+  var coffeeFilter = $.filter('**/*.coffee')
+
+  return gulp.src(['src/**/*.{js,coffee}'])
+    .pipe(coffeeFilter)
     .pipe($.coffee({bare: false}))
-    .on('error', handleError)
-    .pipe(gulp.dest('.tmp'))
-});
-
-gulp.task('scripts', ['coffee'], function () {
-  return gulp.src(['.tmp/**/*.js', 'src/**/*.js'])
+    .pipe(coffeeFilter.restore())
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
+    .on('error', handleError)
     .pipe(gulp.dest('.tmp'))
-    .pipe($.size());
+    .pipe($.size())
+    .pipe(reload({stream:true}));
 });
 
-gulp.task('partials', function () {
-  return gulp.src('src/{app,components}/**/*.html')
+
+gulp.task('html', function () {
+  var jadeFilter = $.filter('**/*.jade')
+
+  return gulp.src('src/**/*.{html,jade}')
+    .pipe(jadeFilter)
+    .pipe($.jade({
+      locals: {}
+    }))
+    .pipe(gulp.dest('.tmp'))
+    .pipe(jadeFilter.restore())
+    .on('error', handleError)
+    .pipe($.size())
+    .pipe(reload({stream:true}));
+});
+
+gulp.task('htmlForDist', ['styles', 'scripts', 'html'], function () {
+  var htmlFilter = $.filter('*.html');
+  var jsFilter = $.filter('{app,components}/**/*.js');
+  var cssFilter = $.filter('{app,components}/**/*.css');
+  var assets;
+
+  return gulp.src('{.tmp,src}/**/*.html')
     .pipe($.minifyHtml({
       empty: true,
       spare: true,
       quotes: true
     }))
     .pipe($.angularTemplatecache('templates.js', {module: 'codoshop'}))
-    .on('error', handleError)
     .pipe(gulp.dest('.tmp/components/templates'))
-    .pipe($.size());
-});
-
-gulp.task('html', ['styles', 'scripts', 'partials'], function () {
-  var htmlFilter = $.filter('*.html');
-  var jsFilter = $.filter('{app,components}/**/*.js');
-  var cssFilter = $.filter('{app,components}/**/*.css');
-  var assets;
-
-  return gulp.src('src/*.html')
-    // .pipe($.inject(gulp.src('.tmp/**/*.js'), {
-    //   read: false,
-    //   starttag: '<!-- inject:partials -->',
-    //   addRootSlash: false,
-    //   addPrefix: '../'
-    // }))
+    .pipe($.inject(gulp.src('.tmp/components/templates/templates.js'), {
+      read: false,
+      starttag: '<!-- inject:partials -->',
+      addRootSlash: false,
+      addPrefix: '../'
+    }))
     .pipe(assets = $.useref.assets())
+    
     .pipe($.rev())
 
     .pipe(jsFilter)
@@ -75,6 +100,7 @@ gulp.task('html', ['styles', 'scripts', 'partials'], function () {
 
     .pipe(assets.restore())
     .pipe($.useref())
+
     .pipe($.revReplace())
     .pipe(htmlFilter)
     .pipe($.minifyHtml({
@@ -83,8 +109,10 @@ gulp.task('html', ['styles', 'scripts', 'partials'], function () {
       quotes: true
     }))
     .pipe(htmlFilter.restore())
+
     .pipe(gulp.dest('dist'))
-    .pipe($.size());
+    .pipe($.size())
+    .pipe(reload({stream:true}));
 });
 
 gulp.task('images', function () {
@@ -95,7 +123,8 @@ gulp.task('images', function () {
       interlaced: true
     })))
     .pipe(gulp.dest('dist/assets/images'))
-    .pipe($.size());
+    .pipe($.size())
+    .pipe(reload({stream:true}));
 });
 
 gulp.task('fonts', function () {
@@ -103,13 +132,15 @@ gulp.task('fonts', function () {
     .pipe($.filter('**/*.{eot,svg,ttf,woff}'))
     .pipe($.flatten())
     .pipe(gulp.dest('dist/fonts'))
-    .pipe($.size());
+    .pipe($.size())
+    .pipe(reload({stream:true}));
 });
 
 gulp.task('misc', function () {
   return gulp.src('src/**/*.ico')
     .pipe(gulp.dest('dist'))
-    .pipe($.size());
+    .pipe($.size())
+    .pipe(reload({stream:true}));
 });
 
 gulp.task('clean', function (done) {
