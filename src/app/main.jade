@@ -1,0 +1,28 @@
+// Wrapper div so that resize handles have someone to go without intefering with layour
+.codoshop-wrapper
+	.top
+		.content
+			ul.dots
+				li
+					a(href='javascript:void(0)')
+				li
+					a(href='javascript:void(0)')
+				li
+					a(href='javascript:void(0)')
+
+	.h-spacer.dark
+
+	.codoshop-content
+
+		.codoshop-column(ng-repeat-start='column in codoshopVM.columns', ng-class='column.class', ng-style='column.style')
+			section.fc-g-1(ng-repeat-start='section in column.sections')
+				// <h3 style="text-align: left;"><span>Files</span></h3>
+				nav(ng-if='section.tabs != false')
+					.codoshop-top-bar
+						div
+						div
+					section-tabs(data-tabs='{{section.articles}}')
+				article(ng-repeat='article in section.articles', ng-show='codoshopVM.isSelected(article, section.articles)')
+					ng-include(src='article.templateUrl')
+			.h-spacer(ng-repeat-end='')
+		div(ng-repeat-end='')

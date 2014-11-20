@@ -13,17 +13,12 @@ function browserSyncInit(baseDir, bower) {
         server: {
             baseDir: baseDir,
             routes: (bower == true ? {
-        		"/bower_components": "bower_components"
-    		} : null),
+        		  "/bower_components": "bower_components"
+    		    } : null),
         },
-        
         middleware: middleware
     });
 }
-
-// gulp.task('browser-sync', function() {
-    
-// });
 
 gulp.task('serve', ['watch'], function () {
 	browserSyncInit(['.tmp','src'], true);

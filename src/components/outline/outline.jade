@@ -1,0 +1,24 @@
+.bg-color-1(style='flex-grow: 0; flex-shrink: 0;')
+	// <h3>viewmode</h3>
+	ul.text-tabs
+		li(style='flex-grow: 0;')
+
+		li
+			a(ng-class='{selected: true}', href='javascript:void(0)')
+				div
+					span map
+
+		li
+			a(href='javascript:void(0)')
+				div
+					span tree
+
+		li(style='flex-grow: 0;')
+.bg-color-1.fc-g-1(ng-attr-outline='')
+	script(type='text/ng-template', id='node_template2.html').
+		<a ng-class="{roww: true, dir: node.nodes && node.nodes.length > 0, open: node.status == 'open', closed: node.status == 'closed'}" ng-click="click()" ng-attr-node href="javascript:void(0)">
+		<div class="arrow"></div><div class="icon"></div><div class="label">{{node.name}}</div></a>
+		<ul><li ng-repeat="node in node.nodes" ng-include="'node_template2.html'"></li></ul>
+
+	ul.ztree(ng-controller='zTree')
+		li(ng-repeat='node in treee', ng-include="'node_template2.html'")

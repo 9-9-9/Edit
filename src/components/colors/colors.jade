@@ -1,0 +1,15 @@
+.colors-section.light-block.fc-g-1(ng-attr-colorss='', style='padding: 7px;')
+	.fp.fp-wrap
+		.color-cell.fp.fp-center(ng-repeat='c in colors', style='width: 21px; height: 21px;')
+			div(ng-style="{'background-color': c.string}")
+		| 		
+		.color-cell.fp.fp-center(ng-repeat='c in fillers', style='width: 21px; height: 21px;')
+			div(ng-style="{'background-color': 'none'}")
+	| 	
+	div
+	| 	
+	h3
+		| [
+		span.bold.light-violet {{colors.length}}
+		|  colors detected]  
+		span.fa.fa-cog(style='float: none;')

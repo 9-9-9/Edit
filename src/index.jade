@@ -1,40 +1,44 @@
 doctype html
-html.no-js(ng-app="codoshop-sandbox")
+html.no-js(ng-app='codoshopSandbox')
 	head
-		meta(charset="utf-8")
+		meta(charset='utf-8')
+
 		title Codoshop Sandbox
-		meta(name="description", content="")
-		meta(name="viewport", content="width=device-width")
+
+		meta(name='description', content='')
+
+		meta(name='viewport', content='width=device-width')
 		// Place favicon.ico and apple-touch-icon.png in the root directory
+
 		// build:css({.tmp,src}) styles/vendor.css
 		// bower:css
-		link(rel="stylesheet", href="../bower_components/codemirror/lib/codemirror.css")
-		link(rel="stylesheet", href="../bower_components/fontawesome/css/font-awesome.css")
+		link(rel='stylesheet', href='../bower_components/codemirror/lib/codemirror.css')
+		link(rel='stylesheet', href='../bower_components/fontawesome/css/font-awesome.css')
 		// endbower
-		link(rel="stylesheet", href="../bower_components/jquery.ui/themes/base/all.css")
+		link(rel='stylesheet', href='../bower_components/jquery.ui/themes/base/all.css')
 		// endbuild
+
 		// build:css({.tmp,src}) styles/codoshop.css
-		link(rel="stylesheet", href="app/main.css")
-		link(rel="stylesheet", href="components/tree/tree.css")
-		link(rel="stylesheet", href="components/sectionTabs/sectionTabs.css")
-		link(rel="stylesheet", href="components/projects/projects.css")
-		link(rel="stylesheet", href="components/colors/colors.css")
-		link(rel="stylesheet", href="components/textEditor/textEditorSection.css")
-		link(rel="stylesheet", href="components/textEditor/theme.css")
+		link(rel='stylesheet', href='app/main.css')
+
+		link(rel='stylesheet', href='components/tree/tree.css')
+
+		link(rel='stylesheet', href='components/sectionTabs/sectionTabs.css')
+
+		link(rel='stylesheet', href='components/projects/projects.css')
+
+		link(rel='stylesheet', href='components/colors/colors.css')
+
+		link(rel='stylesheet', href='components/textEditor/textEditorSection.css')
+
+		link(rel='stylesheet', href='components/textEditor/theme.css')
 		// endbuild
 		// build:css({.tmp,src}) testSandbox.css
-		link(rel="stylesheet", href="index.css")
+		link(rel='stylesheet', href='index.css')
 		// endbuild
 	body
-		//if lt IE 10
-			p.browsehappy
-				| You are using an
-				strong outdated
-				| browser. Please
-				a(href="http://browsehappy.com/") upgrade your browser
-				| to improve your experience.
-		.wrapper(ng-attr-codoshop-sandboxx="")
-			.codoshop(ng-attr-codoshop="", ng-attr-resizable="all")
+		.wrapper(ng-attr-codoshop-sandboxx='')
+			.codoshop(ng-attr-codoshop='', ng-attr-resizable='all')
 		// Google Analytics: change UA-XXXXX-X to be your site's ID.
 		script.
 			(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -43,63 +47,100 @@ html.no-js(ng-app="codoshop-sandbox")
 			e.src='//www.google-analytics.com/analytics.js';
 			r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
 			ga('create','UA-XXXXX-X');ga('send','pageview');
-		// build:js scripts/vendor.js
+		// build:js({.tmp,src}) scripts/vendor.js
 		// bower:js
-		script(src="../bower_components/jquery/dist/jquery.js")
-		script(src="../bower_components/angular/angular.js")
-		script(src="../bower_components/angular-animate/angular-animate.js")
-		script(src="../bower_components/angular-cookies/angular-cookies.js")
-		script(src="../bower_components/angular-touch/angular-touch.js")
-		script(src="../bower_components/angular-sanitize/angular-sanitize.js")
-		script(src="../bower_components/angular-resource/angular-resource.js")
-		script(src="../bower_components/angular-route/angular-route.js")
-		script(src="../bower_components/codemirror/lib/codemirror.js")
-		script(src="../bower_components/angular-ui-codemirror/ui-codemirror.js")
-		script(src="../bower_components/chroma-js/chroma.js")
+		script(src='../bower_components/jquery/dist/jquery.js')
+		script(src='../bower_components/angular/angular.js')
+		script(src='../bower_components/angular-animate/angular-animate.js')
+		script(src='../bower_components/angular-cookies/angular-cookies.js')
+		script(src='../bower_components/angular-touch/angular-touch.js')
+		script(src='../bower_components/angular-sanitize/angular-sanitize.js')
+		script(src='../bower_components/angular-resource/angular-resource.js')
+		script(src='../bower_components/angular-route/angular-route.js')
+		script(src='../bower_components/codemirror/lib/codemirror.js')
+		script(src='../bower_components/angular-ui-codemirror/ui-codemirror.js')
+		script(src='../bower_components/chroma-js/chroma.js')
 		// endbower
-		script(src="../bower_components/jquery.ui/ui/core.js")
-		script(src="../bower_components/jquery.ui/ui/widget.js")
-		script(src="../bower_components/jquery.ui/ui/position.js")
-		script(src="../bower_components/jquery.ui/ui/mouse.js")
-		script(src="../bower_components/jquery.ui/ui/sortable.js")
-		script(src="../bower_components/jquery.ui/ui/draggable.js")
-		script(src="../bower_components/jquery.ui/ui/resizable.js")
-		script(src="../bower_components/jquery.ui/ui/tooltip.js")
-		script(src="../bower_components/codemirror/mode/css/css.js")
-		script(src="../bower_components/codemirror/mode/htmlembedded/htmlembedded.js")
-		script(src="../bower_components/codemirror/mode/htmlmixed/htmlmixed.js")
-		script(src="../bower_components/codemirror/mode/javascript/javascript.js")
-		script(src="../bower_components/codemirror/mode/coffeescript/coffeescript.js")
-		script(src="../bower_components/codemirror/mode/xml/xml.js")
-		script(src="../bower_components/codemirror/addon/runmode/runmode.js")
-		script(src="../bower_components/codemirror/addon/comment/comment.js")
-		script(src="../bower_components/codemirror/addon/comment/continuecomment.js")
-		script(src="../bower_components/codemirror/addon/fold/foldcode.js")
-		script(src="../bower_components/codemirror/addon/fold/foldgutter.js")
-		script(src="../bower_components/codemirror/addon/fold/brace-fold.js")
-		script(src="../bower_components/codemirror/addon/fold/comment-fold.js")
-		script(src="../bower_components/codemirror/addon/fold/indent-fold.js")
-		script(src="../bower_components/codemirror/addon/fold/xml-fold.js")
-		script(src="../bower_components/codemirror/addon/fold/markdown-fold.js")
-		script(src="../bower_components/codemirror/addon/edit/closebrackets.js")
-		script(src="../bower_components/codemirror/addon/edit/closetag.js")
-		script(src="../bower_components/codemirror/addon/edit/matchbrackets.js")
-		script(src="../bower_components/codemirror/addon/edit/matchtags.js")
+		script(src='../bower_components/jquery.ui/ui/core.js')
+
+		script(src='../bower_components/jquery.ui/ui/widget.js')
+
+		script(src='../bower_components/jquery.ui/ui/position.js')
+
+		script(src='../bower_components/jquery.ui/ui/mouse.js')
+
+		script(src='../bower_components/jquery.ui/ui/sortable.js')
+
+		script(src='../bower_components/jquery.ui/ui/draggable.js')
+
+		script(src='../bower_components/jquery.ui/ui/resizable.js')
+
+		script(src='../bower_components/jquery.ui/ui/tooltip.js')
+
+		script(src='../bower_components/codemirror/mode/css/css.js')
+
+		script(src='../bower_components/codemirror/mode/htmlembedded/htmlembedded.js')
+
+		script(src='../bower_components/codemirror/mode/htmlmixed/htmlmixed.js')
+
+		script(src='../bower_components/codemirror/mode/javascript/javascript.js')
+
+		script(src='../bower_components/codemirror/mode/coffeescript/coffeescript.js')
+
+		script(src='../bower_components/codemirror/mode/xml/xml.js')
+
+		script(src='../bower_components/codemirror/addon/runmode/runmode.js')
+
+		script(src='../bower_components/codemirror/addon/comment/comment.js')
+
+		script(src='../bower_components/codemirror/addon/comment/continuecomment.js')
+
+		script(src='../bower_components/codemirror/addon/fold/foldcode.js')
+
+		script(src='../bower_components/codemirror/addon/fold/foldgutter.js')
+
+		script(src='../bower_components/codemirror/addon/fold/brace-fold.js')
+
+		script(src='../bower_components/codemirror/addon/fold/comment-fold.js')
+
+		script(src='../bower_components/codemirror/addon/fold/indent-fold.js')
+
+		script(src='../bower_components/codemirror/addon/fold/xml-fold.js')
+
+		script(src='../bower_components/codemirror/addon/fold/markdown-fold.js')
+
+		script(src='../bower_components/codemirror/addon/edit/closebrackets.js')
+
+		script(src='../bower_components/codemirror/addon/edit/closetag.js')
+
+		script(src='../bower_components/codemirror/addon/edit/matchbrackets.js')
+
+		script(src='../bower_components/codemirror/addon/edit/matchtags.js')
 		// endbuild
+
 		// build:js({.tmp,src}) scripts/codoshop.js
-		script(src="app/main.js")
-		script(src="app/main.controller.js")
-		script(src="components/tree/tree.js")
-		script(src="components/sectionTabs/sectionTabs.js")
-		script(src="components/parser/parser.js")
-		script(src="components/projects/projects.js")
-		script(src="components/colors/colors.js")
-		script(src="components/outline/outline.js")
-		script(src="components/textEditor/textEditor.js")
-		// inject:partials
+		script(src='app/main.js')
+
+		script(src='app/main.controller.js')
+
+		script(src='components/tree/tree.js')
+
+		script(src='components/sectionTabs/sectionTabs.js')
+
+		script(src='components/parser/parser.js')
+
+		script(src='components/projects/projects.js')
+
+		script(src='components/colors/colors.js')
+
+		script(src='components/outline/outline.js')
+
+		script(src='components/textEditor/textEditor.js')
+		// inject:partials 
 		// angular templates will be automaticaly converted in js and inserted here
-		// endinject
+		// endinject 
 		// endbuild
+
 		// build:js({.tmp,src}) testSandbox.js
-		script(src="index.js")
+		script(src='index.js')
 		// endbuild

@@ -3,10 +3,28 @@
 var gulp    = require('gulp');
 
 var $      = require('gulp-load-plugins')({
-  pattern: ['gulp-*', 'browser-sync', 'main-bower-files', 'uglify-save-license', 'del']
+  pattern: ['gulp-*', 'browser-sync', 'lazypipe', 'main-bower-files', 'uglify-save-license', 'del']
 });
 
 var reload = $.browserSync.reload;
+
+var partials = {
+  filename: 'templates.js',
+  dest    : '.tmp/components/templates'
+};
+
+// initialize a lazypipe to process html
+var processHtml = $.lazypipe()
+  .pipe(function () {
+    return $.if('**/*.jade', (
+      $.lazypipe()
+      .pipe($.jade, {
+        locals: {},
+        pretty: true
+      })
+      .pipe(gulp.dest,'.tmp')
+    )());
+  });
 
 function handleError(err) {
   console.error(err.toString());
@@ -50,44 +68,55 @@ gulp.task('scripts', function () {
 });
 
 
-gulp.task('html', function () {
-  var jadeFilter = $.filter('**/*.jade')
-
-  return gulp.src('src/**/*.{html,jade}')
-    .pipe(jadeFilter)
-    .pipe($.jade({
-      locals: {}
-    }))
-    .pipe(gulp.dest('.tmp'))
-    .pipe(jadeFilter.restore())
+gulp.task('html:base', ['wiredep'], function () {
+  return gulp.src('src/*.{html,jade}')
+    .pipe(processHtml())
     .on('error', handleError)
-    .pipe($.size())
-    .pipe(reload({stream:true}));
 });
 
-gulp.task('htmlForDist', ['styles', 'scripts', 'html'], function () {
-  var htmlFilter = $.filter('*.html');
-  var jsFilter = $.filter('{app,components}/**/*.js');
-  var cssFilter = $.filter('{app,components}/**/*.css');
-  var assets;
+gulp.task('html:partials', function () {
+  return gulp.src('src/{app,components}/**/*.{html,jade}')
+    .pipe(processHtml()) 
+    .on('error', handleError)
+});
 
-  return gulp.src('{.tmp,src}/**/*.html')
+gulp.task('html:partials:js', ['html:partials'], function () {
+  return gulp.src(['.tmp/{app,components}/**/*.html', 'src/{app,components}/**/*.html'])
     .pipe($.minifyHtml({
       empty: true,
       spare: true,
       quotes: true
     }))
-    .pipe($.angularTemplatecache('templates.js', {module: 'codoshop'}))
-    .pipe(gulp.dest('.tmp/components/templates'))
-    .pipe($.inject(gulp.src('.tmp/components/templates/templates.js'), {
+    .pipe($.angularTemplatecache(partials.filename, {module: 'codoshop'}))
+    .pipe(gulp.dest(partials.dest))
+    .on('error', handleError)
+    .pipe($.size())
+});
+
+gulp.task('html', ['html:base', 'html:partials'], function () {
+  return gulp.src(['.tmp/**/*.html', 'src/**/*.html'])
+    .pipe($.size())
+    .pipe(reload({stream:true}));
+});
+
+gulp.task('build:html', ['styles', 'scripts', 'html:base', 'html:partials:js'], function () {
+  var htmlBaseFilter      = $.filter('*.html');
+  var jsFilter            = $.filter('**/*.js');
+  var cssFilter           = $.filter('**/*.css');
+  var assets;
+
+  return gulp.src(['.tmp/*.html', 'src/*.html'])
+
+    .pipe($.inject(gulp.src(partials.dest + '/' + partials.filename), {
       read: false,
       starttag: '<!-- inject:partials -->',
       addRootSlash: false,
       addPrefix: '../'
     }))
+
+
     .pipe(assets = $.useref.assets())
     
-    .pipe($.rev())
 
     .pipe(jsFilter)
     .pipe($.ngAnnotate())
@@ -98,19 +127,21 @@ gulp.task('htmlForDist', ['styles', 'scripts', 'html'], function () {
     .pipe($.csso())
     .pipe(cssFilter.restore())
 
+    .pipe($.rev())
     .pipe(assets.restore())
     .pipe($.useref())
-
     .pipe($.revReplace())
-    .pipe(htmlFilter)
+
+    .pipe(htmlBaseFilter)
     .pipe($.minifyHtml({
       empty: true,
       spare: true,
       quotes: true
     }))
-    .pipe(htmlFilter.restore())
+    .pipe(htmlBaseFilter.restore())
 
     .pipe(gulp.dest('dist'))
+    .on('error', handleError)
     .pipe($.size())
     .pipe(reload({stream:true}));
 });
@@ -147,4 +178,4 @@ gulp.task('clean', function (done) {
   $.del(['.tmp', 'dist'], done);
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'misc']);
+gulp.task('build', ['build:html', 'images', 'fonts', 'misc']);

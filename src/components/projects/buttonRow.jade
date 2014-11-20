@@ -1,0 +1,15 @@
+li {{projects.length}} projects
+li
+
+li
+	a(href='javascript:void(0)', ng-click='toggleAll()')
+		// TODO: Fix so that it doesn't run filter twice
+		span.fa(ng-class="{'fa-compress': (expandedProjects().length > 0), 'fa-expand': (expandedProjects().length == 0 && contractedProjects().length > 0)}")
+li
+li
+	a(href='javascript:void(0)')
+		span.fa.fa-folder-open
+li
+li
+	a(href='javascript:void(0)', ng-click='newProject()') +
+li

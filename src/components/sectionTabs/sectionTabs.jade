@@ -1,0 +1,9 @@
+ul.codoshop-section-tabs(ng-attr-hsort='')
+	li(ng-repeat='tab in tabs', ng-selected='codoshopVM.isSelected(tab, tabs)')
+		div
+			a(href='javascript:void(0)')
+				span {{tab.name}}
+
+	li
+
+	li

@@ -1,7 +1,7 @@
 'use strict'
 
 angular
-	.module('codoshop-sandbox', [
+	.module('codoshopSandbox', [
 		'ngAnimate'
 		'ngCookies'
 		'ngTouch'
@@ -12,6 +12,7 @@ angular
 	])
 	.directive 'codoshopSandboxx', () ->
 		link: (scope, el, attrs, ctrls) ->
+
 			scope.openFiles =
 				[
 					name: 'main.scss'
