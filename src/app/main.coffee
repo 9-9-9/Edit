@@ -15,9 +15,12 @@ angular
 		'ngRoute',
 		'ngSanitize',
 		'ngTouch',
+
+		'ui.router',
 		'ui.codemirror',
 		
 		'codoshop-tree',
+		'codoshopDropMenu',
 		'codoshop-sectionTabs',
 		'codoshop-projects',
 		'codoshop-colors',

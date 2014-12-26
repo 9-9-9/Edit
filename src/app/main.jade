@@ -10,19 +10,26 @@
 				li
 					a(href='javascript:void(0)')
 
-	.h-spacer.dark
+	//- .h-spacer.dark
 
 	.codoshop-content
 
-		.codoshop-column(ng-repeat-start='column in codoshopVM.columns', ng-class='column.class', ng-style='column.style')
+		.codoshop-column(ng-repeat='column in codoshopVM.columns', ng-class='column.class', ng-style='column.style')
+
 			section.fc-g-1(ng-repeat-start='section in column.sections')
-				// <h3 style="text-align: left;"><span>Files</span></h3>
 				nav(ng-if='section.tabs != false')
 					.codoshop-top-bar
 						div
-						div
+							div
+								div
+
 					section-tabs(data-tabs='{{section.articles}}')
 				article(ng-repeat='article in section.articles', ng-show='codoshopVM.isSelected(article, section.articles)')
 					ng-include(src='article.templateUrl')
 			.h-spacer(ng-repeat-end='')
-		div(ng-repeat-end='')
+
+		.codoshop-dialog-wrapper(ng-show='codoshopVM.dialog.show == true')
+			.codoshop-dialog(ng-attr-dialog='', ng-show='codoshopVM.dialog.show == true')
+
+	div(ng-attr-codoshop-drop-menu='', ui-view='dropMenu', ng-show='codoshopVM.dropMenu.show == true')
+

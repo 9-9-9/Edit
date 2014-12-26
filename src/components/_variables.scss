@@ -15,7 +15,7 @@ $font-family-serif:       	Georgia, "Times New Roman", Times, serif !default;
 $font-family-monospace:   	Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:        	$font-family-sans-serif !default;
 
-$master-opacity: 0.85;
+$master-opacity: 0.80;
 
 //** Background for `.codoshop`.
 $body-bg:               #fff !default;
@@ -28,11 +28,12 @@ $link-color:            #428bca !default;
 $link-hover-color:      darken($link-color, 15%) !default;
 
 // $bg-color-1: #17151d;
-// $bg-color-1: rgba(darken(#666, 8), $master-opacity - 0.05);
-$bg-color-1: rgba(darken(#666, 12), $master-opacity - 0.05);
-$bg-color-2: rgba(lighten(#555, 6), $master-opacity - 0.05);
+$bg-color-1: rgba(darken(#666, 6), $master-opacity);
+// $bg-color-1: rgba(darken(#666, 12), $master-opacity );
+// $bg-color-2: rgba(lighten(#555, 6), $master-opacity - 0.05);
+$bg-color-2: rgba(lighten(#555, 10), $master-opacity);
 
-$bg-color-3: rgba(lighten(#1f2733, 30), $master-opacity - 0.05);
+$bg-color-3: rgba(lighten(#1f2733, 30), $master-opacity);
 $bg-color-3-2: #3b4b64;
 
 $bg-color-4: #15131d;
@@ -42,10 +43,13 @@ $dark: rgba(#222, $master-opacity);
 $less-dark: rgba(#333, $master-opacity);
 $light-silver: rgba(#ccc, 0.3);
 $silver: rgba(#999, 0.9);
-$silver-2: rgba(#999, 0.7);
+$silver-2: rgba(#bbb, 0.7);
+// $silver-2: rgba(#999, 0.5);
+$silver-2: rgba(#fff, 0.5);
+$silver-2: rgba(#fff, 0.3);
 
-$gap-color-1: rgba(#aaa, 0.20);
-$gap-color-2: transparent;
+$gap-color-1: rgba(#fff, 0.5);
+$gap-color-2: rgba(#000, 0.9);
 // $light-blue: rgba(#72f4ff, $master-opacity);
 // $light-blue: rgba(#81fff8, $master-opacity);
 $light-blue: rgba(#90dbea, $master-opacity);
@@ -57,6 +61,7 @@ $light-violet: rgba(#a0cdff, $master-opacity);
 	background-color: $bg-color-1;
 }
 .bg-color-2 {
+	// background: 
 	background-color: $bg-color-2;
 }
 .bg-color-3 {

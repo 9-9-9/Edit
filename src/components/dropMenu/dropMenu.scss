@@ -1,0 +1,60 @@
+@import '../variables';
+
+div[ng-attr-codoshop-drop-menu] {
+	width: 200px;
+	// height: 300px;
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 99;
+
+	font-weight: 200;
+	text-transform: capitalize;
+	background: 
+		radial-gradient( ellipse 100px 100px, rgba(#fff, 0.9), rgba(#fff, 0.0) 80%, rgba(#fff, 0))
+	,	radial-gradient( circle 300px, rgba(#fff, 0.3), rgba(#fff, 0))
+			
+	,	radial-gradient( circle 200px, rgba(#000, 0.0) 0%, rgba(#000, 0.0) 30%, rgba(#000, 0.9))
+	,	linear-gradient( rgba(#666372, 1) 0%, rgba(#1f1d26, 1) 100%) left repeat
+	;
+	border-radius: 5px;
+
+	&:before, &:after {
+		content: '';
+		height: 5px;
+		background-color: rgba(#000, 0.6);
+	}
+	&:before {
+		border-radius: 5px 5px 0 0;
+	}
+	&:after {
+		border-radius: 0 0 5px 5px;
+	}
+	> ul {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+		// color: rgba(#eee, 0.8);
+		text-shadow: 0px 0 0.2px rgba(#fff, 1);
+
+		> li {
+			display: flex;
+			// line-height: inherit;
+			> a {
+				padding-left: 10px;
+				padding-right: 10px;
+				flex-grow: 1;
+				font-weight: inherit;
+				color: inherit;
+				background-color: rgba(#000, 0.6);
+				&:hover {
+					color: inherit;
+					background-color: rgba(#0000ff, 0.7);
+				}
+			}
+		}
+		
+	}
+}

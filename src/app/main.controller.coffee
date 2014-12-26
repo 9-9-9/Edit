@@ -8,15 +8,21 @@
 ###
 
 angular
-	.module('codoshop')
-	.directive 'codoshop', () ->
+	.module 'codoshop'
+	# .run ($rootScope, $state, $stateParams) ->
+
+	# 	return
+	.directive 'codoshop', ($state, $stateParams) ->
 		templateUrl: 'app/main.html'
 		controller: ($scope) -> do (vm = null) =>
+
 
 			$scope.codoshopVM 	?= {}
 			vm 					= $scope.codoshopVM
 			vm.modules 			?= {}
 
+			$scope.$state 			= $state
+			$scope.$stateParams 	= $stateParams
 			$scope.openFiles 	?= []
 			$scope.projects 	?= []
 			$scope.cmLookup 	= new WeakMap()

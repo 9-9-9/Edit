@@ -1,10 +1,6 @@
 {
   "name": "codoshop",
   "version": "0.0.0",
-  "main": ["dist/codoshop.js", "dist/codoshop.css"],
-  "ignore": [
-    "./!{dist,bower.json,.bowerrc}"
-  ],
   "dependencies": {},
   "devDependencies": {
     "browser-sync": "^1.7.0",

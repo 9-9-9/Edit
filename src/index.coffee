@@ -79,7 +79,7 @@ angular
 				status: 'expanded'
 				dirTree:
 					[
-						name: 'My Project'
+						name: 'Example Project'
 						type: 'dir'
 						status: 'open'
 						nodes: [

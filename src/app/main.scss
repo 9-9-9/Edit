@@ -66,16 +66,17 @@ html {
 	
 	
 	// filter: blur(5px);
+	width: 1280px;
+	height: 670px;
 	@include flex-grid();
-	@include size(1280px 670px);
-	@include background(
-		// linear-gradient( 180deg, rgba(#fff, 0.4) 0%, rgba(#fff, 0.0) 1%),
-		linear-gradient( 0deg, rgba(#fff, 0.0) 96%, rgba(#fff, 0.0) 100%, rgba(#fff, 0.0) 100%),
-		linear-gradient( 0deg, rgba(#2e293a, 0.9) 0%, rgba(#17151d, 0.9) 100%)
-	);
+	// @include size(1280px 670px);
+	background:
+		linear-gradient( 0deg, rgba(#fff, 0.0) 96%, rgba(#fff, 0.0) 100%, rgba(#fff, 0.0) 100%)
+	,	linear-gradient( 0deg, rgba(#2e293a, 0.9) 0%, rgba(#17151d, 0.9) 100%)
+	;
 
 	position: relative;
-	overflow: hidden;
+	// overflow: hidden;
 	border-radius: 5px;
 	color: rgba(#ccc, 0.3);
 	z-index: 1;
@@ -99,7 +100,7 @@ html {
 	a {
 		color: $link-color;
 		text-decoration: none;
-
+		cursor: default;
 		&:hover,
 		&:focus {
 			color: $link-hover-color;
@@ -280,6 +281,7 @@ html {
 	> .codoshop-wrapper > .codoshop-content {
 		// border-top: 1px solid rgba(#000, 0.3);
 		// border: 2px solid rgba(#fff, 0.08);
+		position: relative;
 		display: flex;
 		// align-items: stretch;
 		flex-grow: 1;
@@ -312,6 +314,16 @@ html {
 		// }
 		> .v-spacer:last-child {
 			display: none;
+		}
+
+		> .codoshop-dialog-wrapper {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			flex-grow: 1;
+			flex-shrink: 0;
 		}
 
 	}

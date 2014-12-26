@@ -102,7 +102,7 @@ gulp.task 'html:base', ['wiredep'], ->
 
 # Process html partials (your html templates that live in the app and components directories)
 gulp.task 'html:partials', ->
-	gulp.src(o.dir.src + '/{app,components}/**/*.html')
+	gulp.src o.dir.src + '/{app,components}/**/*.html'
 
 	.pipe $.addSrc(o.dir.src + '/{app,components}/**/*.jade')
 	.pipe $.iff('**/*.jade', do () ->
@@ -127,9 +127,13 @@ gulp.task 'html:partials:js', ['html:partials'], ->
 		empty: true
 		spare: true
 		quotes: true
-	)).pipe($.angularTemplatecache(o.partials.filename,
+	))
+	.pipe $.angularTemplatecache(o.partials.filename,
 		module: o.module
-	)).pipe(gulp.dest(o.partials.dest)).on('error', handleError).pipe $.size()
+	)
+	.pipe gulp.dest(o.partials.dest)
+	.on 'error', handleError
+	.pipe $.size()
 
 
 # Shortcut task to process all html for development with size logging and brower-sync reload.
@@ -147,6 +151,7 @@ gulp.task 'html', [
 
 # Build html for distribution
 gulp.task 'build:html', [
+	'clean:distTmp'
 	'styles'
 	'scripts'
 	'html:base'
@@ -173,14 +178,14 @@ gulp.task 'build:html', [
 
 		.pipe(assets = $.useref.assets())
 
-		.pipe(jsFilter)
-		.pipe($.ngAnnotate())
-		.pipe($.uglify(preserveComments: $.uglifySaveLicense))
-		.pipe(jsFilter.restore())
+		.pipe jsFilter
+		.pipe $.ngAnnotate()
+		.pipe $.uglify(preserveComments: $.uglifySaveLicense)
+		.pipe jsFilter.restore()
 
-		.pipe(cssFilter)
-		.pipe($.csso())
-		.pipe(cssFilter.restore())
+		.pipe cssFilter
+		.pipe $.csso()
+		.pipe cssFilter.restore()
 
 		# .pipe $.iff('**/codoshop.js', do () ->
 		# 	$.bun [
@@ -189,23 +194,23 @@ gulp.task 'build:html', [
 		# )
 		# .pipe $.ignore.exclude(o.dir.dist + '/**/*')
 
-		.pipe($.rev())
-		.pipe(assets.restore())
-		.pipe($.useref())
-		.pipe($.revReplace())
+		.pipe $.rev()
+		.pipe assets.restore()
+		.pipe $.useref()
+		.pipe $.revReplace()
 
-		.pipe(htmlBaseFilter)
+		.pipe htmlBaseFilter
 		.pipe($.minifyHtml(
 			empty: true
 			spare: true
 			quotes: true
 		))
-		.pipe(htmlBaseFilter.restore())
+		.pipe htmlBaseFilter.restore()
 
-		.pipe(gulp.dest(o.dir.distTest))
-		.on('error', handleError)
-		.pipe($.size())
-		.pipe(reload(stream: true))
+		.pipe gulp.dest(o.dir.distTest)
+		.on 'error', handleError
+		.pipe $.size()
+		.pipe reload(stream: true)
 
 gulp.task 'images', ->
 	gulp.src o.dir.src + '/assets/images/**/*'
@@ -228,23 +233,30 @@ gulp.task 'fonts', ->
 
 gulp.task 'misc', ->
 	gulp.src o.dir.src + '/**/*.ico'
-		.pipe(gulp.dest(o.dir.distTest))
-		.pipe($.size())
+		.pipe gulp.dest(o.dir.distTest)
+		.pipe $.size()
 		.pipe reload(stream: true)
+
+gulp.task 'clean:distTmp', (done) ->
+	$.del [
+		o.dir.distTest + '/scripts'
+		o.dir.distTest + '/styles'
+	], done
+	return
 
 gulp.task 'clean', (done) ->
 	$.del [
 		o.dir.tmp
+		o.dir.dist
 	], done
 	return
 
-gulp.task 'copyToDist', (done) ->
+gulp.task 'copyToDist', ['build:html'], (done) ->
 	gulp.src o.dir.distTest + '/{scripts,styles}/' + o.module + '*'
 		.pipe $.flatten()
-		.pipe $.rename((path) ->
+		.pipe $.rename (path) ->
 			path.basename = o.module
 			return
-		)
 		.pipe $.size()
 		.pipe gulp.dest(o.dir.dist)
 

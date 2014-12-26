@@ -22,17 +22,17 @@ html(ng-app='codoshopSandbox')
 		link(rel='stylesheet', href='app/main.css')
 
 		link(rel='stylesheet', href='components/tree/tree.css')
-
+		link(rel='stylesheet', href='components/dropMenu/dropMenu.css')
 		link(rel='stylesheet', href='components/sectionTabs/sectionTabs.css')
 
 		link(rel='stylesheet', href='components/projects/projects.css')
-
+		link(rel='stylesheet', href='components/projects/tree.css')
 		link(rel='stylesheet', href='components/colors/colors.css')
 
 		link(rel='stylesheet', href='components/textEditor/textEditorSection.css')
-
 		link(rel='stylesheet', href='components/textEditor/theme.css')
 		// endbuild 
+
 		// build:css({.tmp/src,src}) testSandbox.css 
 		link(rel='stylesheet', href='index.css')
 		// endbuild 
@@ -60,6 +60,10 @@ html(ng-app='codoshopSandbox')
 		script(src='../bower_components/codemirror/lib/codemirror.js')
 		script(src='../bower_components/angular-ui-codemirror/ui-codemirror.js')
 		script(src='../bower_components/chroma-js/chroma.js')
+		script(src='../bower_components/angular-filter/dist/angular-filter.js')
+		script(src='../bower_components/firebase/firebase.js')
+		script(src='../bower_components/angularfire/dist/angularfire.js')
+		script(src='../bower_components/angular-ui-router/release/angular-ui-router.js')
 		// endbower 
 		script(src='../bower_components/jquery.ui/ui/core.js')
 
@@ -125,11 +129,14 @@ html(ng-app='codoshopSandbox')
 
 		script(src='components/tree/tree.js')
 
+		script(src='components/dropMenu/dropMenu.js')
+
 		script(src='components/sectionTabs/sectionTabs.js')
 
 		script(src='components/parser/parser.js')
 
 		script(src='components/projects/projects.js')
+		script(src='components/projects/dropMenu.js')
 
 		script(src='components/colors/colors.js')
 

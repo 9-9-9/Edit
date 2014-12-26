@@ -1,54 +1,59 @@
-.h-spacer.dark
-ul.codoshop-projects-button-row(ng-attr-codoshop-projects-button-row='')
-.h-spacer.thick
-.codoshop-project-scrollview(ng-attr-codoshop-projects='', ng-attr-vsort='')
-	// <div></div>
-	// <div class="h-spacer" style="height: 1px; background-color: #777;"></div>
-	div(ng-repeat-start='project in projects', ng-class="{expanded: project.status == 'expanded', 'codoshop-project': true}", ng-attr-codoshop-project='')
-		// <div class="h-spacer light"></div>
-		.divider-block
-			//
-				<div>
-				<div>
-				<div class="icon fa fa-cube"></div>
-				</div>
-				</div>
-			// <div></div> fa fa-cube
+.codoshop-projects-button-row-wrapper
+	ul.codoshop-projects-button-row(ng-attr-codoshop-projects-button-row='')
+
+.codoshop-project-scrollview(ng-attr-codoshop-projects='')
+
+	div(ng-attr-codoshop-project='', ng-repeat-start='project in projects', ng-class="{expanded: project.status == 'expanded', 'codoshop-project': true}", ng-selected='project.status == "expanded"')
+
+		div
+			div
+				a.fa.fa-cog(ng-click='openSettingsMenu($event)', href='#', onclick='return false;')
+			header
+				div
+					//- a.fa.fa-angle-up(ng-click='openToggle()', href='#', onclick='return false;')
+					//- a.fa.fa-angle-down(ng-click='openToggle()', href='#', onclick='return false;')
+				div
+					a(ng-click='openToggle()', href='#', onclick='return false;')
+						div {{project.name}}
+						div
+						div ../asdas/asdas/{{project.name}}
+					//- a.fa.fa-angle-down(ng-click='openToggle()', href='#', onclick='return false;')
+
+
+			div.animate-slide(ng-show="project.status == 'expanded'")
+				ul.codoshop-project-buttons
+					li
+						a(href='#', onclick='return false;').fa.fa-angle-double-down
+					li
+						a(href='#', onclick='return false;').fa.fa-angle-double-up
+					li
+						a(href='#', onclick='return false;').fa.fa-angle-down
+					li
+						a(href='#', onclick='return false;').fa.fa-angle-up
+					li
+						a(ng-disabled='project.dirTree && project.dirTree.length > 0', ng-click='openToggle()', href='#', onclick='return false;').fa.fa-angle-down
+					li
+						a(href='#', onclick='return false;').fa.fa-cog
+
+
+				// File directory tree
+				.fp.fp-fd-c
+					// <div class="bg-color-1" ng-style="{'height': lhc( 0.25 ), 'flex-shrink': 0}"></div>
+					script(type='text/ng-template', id='node_template.html').
+						<a ng-click="click()" class="bg-color-1" ng-attr-node href="javascript:void(0)">
+						<div></div>
+						<div class="arrow"></div>
+						<div class="icon fa fa-folder-o"></div>
+						<div class="label">{{node.name}}</div>
+						</a>
+						<ul ng-show="node.status == 'open'" class="animate-slide">
+						<li ng-repeat="node in node.nodes" ng-class="{dir: node.type == 'dir'}" ng-include="'node_template.html'"></li>
+						</ul>
+
+					ul.codoshop-tree(ng-controller='zTree')
+						li(ng-repeat='node in project.dirTree', ng-class="{dir: node.type == 'dir', open: node.status == 'open'}", ng-include="'node_template.html'")
 			div
 
-			form(role='form')
-				input#projectName.large(type='text', placeholder='Untitled', value='{{project.name}}')
-			// <button type="button" class="" ng-click="openToggle()"><span class="fa fa-caret-dowwn"></span></button>
-
-		.codoshop-project-subheader ../asdas/asdas/{{project.name}}
-
-		.codoshop-project-details
-			// <div class="icon fa fa-cube"></div>
-			button.up(ng-show='project.dirTree && project.dirTree.length > 0', type='button', ng-click='', style='opacity: 0;')
-				span.fa.fa-cog
-
-			button.up(type='button', ng-click='')
-				span.fa.fa-cog
-
-			button.up(ng-show='project.dirTree && project.dirTree.length > 0', type='button', ng-click='openToggle()')
-				.fa.fa-arrow-down
-		// File directory tree
-		.fp.fp-fd-c.animate-slide(ng-show="project.status == 'expanded'")
-			// <div class="bg-color-1" ng-style="{'height': lhc( 0.25 ), 'flex-shrink': 0}"></div>
-			script(type='text/ng-template', id='node_template.html').
-				<a ng-click="click()" class="bg-color-1" ng-attr-node href="javascript:void(0)">
-				<div></div>
-				<div class="arrow"></div>
-				<div class="icon fa fa-folder-o"></div>
-				<div class="label">{{node.name}}</div>
-				</a>
-				<ul ng-show="node.status == 'open'" class="animate-slide">
-				<li ng-repeat="node in node.nodes" ng-class="{dir: node.type == 'dir'}" ng-include="'node_template.html'"></li>
-				</ul>
-
-			ul.codoshop-tree(ng-controller='zTree')
-				li(ng-repeat='node in project.dirTree', ng-class="{dir: node.type == 'dir', open: node.status == 'open'}", ng-include="'node_template.html'")
-		// <div class="h-spacer light"></div>
 
 	.fc-s-0(ng-repeat-end='')
 

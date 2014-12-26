@@ -1,9 +1,18 @@
 'use strict'
 
-angular.module('codoshop-projects', ['codoshop-tree'])
+angular.module('codoshop-projects', ['codoshop-tree', 'codoshopDropMenu'])
 	.directive 'codoshopProjectsButtonRow', () ->
 		templateUrl: 'components/projects/buttonRow.html'
 		require: '^codoshop'
+		controller: ($scope) ->
+
+			$scope.openSettingsMenu = do (s = $scope) -> ($event) ->
+				s.$state.go 'projectsDropMenu'
+				s.codoshopVM.dropMenu.show = true
+				s.codoshopVM.dropMenu.anchor = $($event.currentTarget)
+				return
+
+			return
 		link: (scope, el, attrs, ctrls) ->
 			ctrl = [].concat(ctrls)[0]
 
