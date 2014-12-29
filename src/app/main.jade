@@ -15,21 +15,31 @@
 	.codoshop-content
 
 		.codoshop-column(ng-repeat='column in codoshopVM.columns', ng-class='column.class', ng-style='column.style')
+			//- div(ui-view='')
+			//- section.fc-g-1(ng-repeat='section in column.sections')
+			//- 	div(ui-view='')
 
-			section.fc-g-1(ng-repeat-start='section in column.sections')
+			section.fc-g-1(ng-repeat='section in column.sections', ng-style='section.style')
 				nav(ng-if='section.tabs != false')
 					.codoshop-top-bar
 						div
 							div
 								div
-
 					section-tabs(data-tabs='{{section.articles}}')
+
 				article(ng-repeat='article in section.articles', ng-show='codoshopVM.isSelected(article, section.articles)')
 					ng-include(src='article.templateUrl')
-			.h-spacer(ng-repeat-end='')
+
 
 		.codoshop-dialog-wrapper(ng-show='codoshopVM.dialog.show == true')
 			.codoshop-dialog(ng-attr-dialog='', ng-show='codoshopVM.dialog.show == true')
 
-	div(ng-attr-codoshop-drop-menu='', ui-view='dropMenu', ng-show='codoshopVM.dropMenu.show == true')
+
+
+div(ng-attr-codoshop-drop-menu='', ng-show='codoshopVM.dropMenu.show == true')
+	ul
+		li(ng-repeat='item in codoshopVM.dropMenu.items')
+			a(ng-click='item["ng-click"]($event, item)', href='#', onclick='return false;') {{item.label}}
+
+input(ng-attr-codoshop-file-input='', type='file', style='display: none; position: absolute;')
 

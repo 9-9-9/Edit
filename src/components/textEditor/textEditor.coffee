@@ -1,49 +1,21 @@
 'use strict'
 
 angular.module('codoshopTextEditor', [])
-	.directive 'codoshopTextEditor', () ->
-		link: (scope, el, attrs, ctrls) -> do (mode = scope.file.mode) ->
-			ctrl = [].concat(ctrl)[0]
+	.directive 'codoshopTextEditorInstance', () ->
+		controller: ($scope) -> do (vm = null) =>
 
+			# vm = $scope.codoshopVM
+			# vm.codeMirror ?= {}
+			# vm.codeMirror.refresh ?= 0
+
+			return
+		link: (scope, el, attrs, ctrls) -> do (el = $(el), vm = scope.codoshopVM, mode = scope.file.mode, reader = null, myCM = null) ->
+
+			# ctrl = [].concat(ctrl)[0]
+			# scope.file.content
 			
-			# resize = do (el, w = null, h = null) -> (myCM) ->
-			# 	w = el.parent().css('width')
-			# 	h = el.parent().css('height')
-			# 	el.css 'width', w
-			# 	el.css 'height', h
-			# 	return
 
-
-			# scope.$watch 'windo.w', (newVal, oldVal, scope) ->
-			# 	if scope.file.selected == true && scope.myCM
-			# 		resize()
-			# 	return
-
-
-			# if mode == 'scss'
-			# 	mode = 
-			# 		name: 'css'
-			# 		scss: true
-			# else if mode == 'html'
-			# 	mode = 'htmlmixed'
-			# else if mode == 'js'
-			# 	mode = 'javascript'
-
-			##### Replace scope with ctrl
-			# scope.myCM = CodeMirror( el[0],
-			# 	value:  scope.file.content
-			# 	mode: mode
-			# 	lineNumbers: true
-			# 	foldGutter: true
-			# 	gutters: ['CodeMirror-linenumbers', "CodeMirror-foldgutter"]
-			# 	theme: 'night'
-			# )
-			# scope.myCM.setSize '100%', '100%'
-			# resize()
-			# scope.myCM.refresh()
-			# scope.cmLookup.set scope.file, scope.myCM
-
-			scope.editorOptions =
+			scope.opts =
 				value		: scope.file.content
 				mode 		: mode
 				lineNumbers : true
@@ -51,4 +23,28 @@ angular.module('codoshopTextEditor', [])
 				gutters		: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter']
 				theme		: 'night'
 
+			# vm.codeMirror.refresh += 1
+
+			myCM = CodeMirror el[0],
+				scope.opts
+
+			scope.cmLookup.set scope.file, myCM 
+
+
+			myCM.setSize el.width(), el.height()
+
+			# TODO: Performance
+			scope.$watchGroup ['codoshopVM.w', 'codoshopVM.h'], do (el) -> (newVs, oldVs) -> do (w = null, h = null) ->
+				w = el.width()
+				h = el.height()
+				if w != 0 and h != 0
+					myCM.setSize w, h
+				return
+			# scope.$watch do (el) -> () ->
+
+			# 	return
+			# ,
+			# (n, o) ->
+
+			# 	return
 			return

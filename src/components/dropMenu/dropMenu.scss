@@ -2,12 +2,13 @@
 
 div[ng-attr-codoshop-drop-menu] {
 	width: 200px;
+	// height: 86px;
 	// height: 300px;
 	display: flex;
 	flex-direction: column;
-	position: absolute;
-	top: 0;
-	left: 0;
+	position: absolute !important;
+	// top: 0;
+	// left: 0;
 	z-index: 99;
 
 	font-weight: 200;

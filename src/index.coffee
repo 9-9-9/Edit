@@ -97,6 +97,7 @@ angular
 								'nodes': [ 
 									'name': 'nav-bar.scss'
 									'type': 'file'
+									'content': 'color: black'
 									]
 							]
 					]

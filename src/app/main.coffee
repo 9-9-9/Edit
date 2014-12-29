@@ -17,7 +17,6 @@ angular
 		'ngTouch',
 
 		'ui.router',
-		'ui.codemirror',
 		
 		'codoshop-tree',
 		'codoshopDropMenu',

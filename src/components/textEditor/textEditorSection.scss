@@ -1,17 +1,24 @@
 @import '../utils';
 @import '../variables';
 
+div[ng-attr-codoshop-text-editor] {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+
+}
 
 ul.codoshop-text-editor-tabs {
 	// border-bottom: 1px solid rgba(#000, 0.9);
 	display: flex;
 	// flex-grow: 0;
 	flex-shrink: 0;
-	font-size: $fsb * 0.85;
+	font-size: 13px;
 	font-weight: 200;
 
 	> li {
-		width: 14rem !important;
+		// TODO: Don't hard code?
+		width: 140px !important;
 		display: flex;
 		flex-direction: column;
 		font-size: inherit;
@@ -32,12 +39,6 @@ ul.codoshop-text-editor-tabs {
 
 		> div {
 			display: flex;
-			// 	&:before {
-			// 	content: "";
-			// 	height: 1px;
-			// 	flex-shrink: 0;
-			// 	background-color: $gap-color-2;
-			// }
 			&:after {
 				content: '';
 				width: 1px;
@@ -61,10 +62,10 @@ ul.codoshop-text-editor-tabs {
 			letter-spacing: inherit;
 			text-transform: inherit;
 
-			background-color: lighten($bg-color-1, 2) !important;
+			// background-color: lighten($bg-color-1, 20) !important;
 
 			&:first-child {
-				padding: 0.15em 7px 0.17em 7px;
+				padding: 1px 7px 1px 7px;
 				flex-grow: 1;
 				flex-shrink: 0;
 			}
@@ -99,13 +100,12 @@ ul.codoshop-text-editor-tabs {
 					}
 				}
 			}
-
-			
 		}
 		
 		&.selected {
 			> div > a:first-child {
 				color: $light-violet;
+				// font-weight: 400;
 			}
 			> div > a:nth-child(2) {
 				> div {
@@ -115,17 +115,20 @@ ul.codoshop-text-editor-tabs {
 				}
 			}
 			> div > a {
-				background-color: $bg-color-2 !important;
+				// background-color: lighten($bg-color-2, 15) !important;
+				// background-color: transparent;
+				@include bg-color-2;
 			}
 		}
 		&:not(.selected) {
 			
-			// &:not(:empty):hover {
-			// 	> a {
-					
-			// 	}
+			&:not(:last-child):hover {
+				> div > a {
+					background: none;
+					background-color: darken($bg-color-2, 5) !important;
+				}
 				
-			// }
+			}
 			> div > a:first-child {
 				// color: rgba(#fff, 0.4);
 				color: $silver-2;
@@ -138,7 +141,8 @@ ul.codoshop-text-editor-tabs {
 				}
 			}
 			> div > a {
-				background-color: $bg-color-2 !important;
+				// background-color: $bg-color-2 !important;
+				@include bg-color-2;
 			}
 			// > a, > div {
 				
@@ -172,7 +176,8 @@ ul.codoshop-text-editor-tabs {
 			overflow: hidden;
 			> div {
 				flex-grow: 1;
-				background-color: $bg-color-2;
+				// background-color: $bg-color-2;
+				@include bg-color-2;
 				&:before, &:after {
 					content: none;
 				}
@@ -187,21 +192,22 @@ ul.codoshop-text-editor-tabs {
 	// box-shadow: 0px 0px 20px rgba(#000, 0.2); 5701ff 17151d 00fff8 12111f
 	padding: 0 0 0 0;
 	// border: 1px solid rgba(#000, 0.9);
+	display: flex;
 	flex-grow: 1;
 
 	// background-color: rgba(lighten($bg-color, 5), 0.9);
-	@include background(
-		// radial-gradient( 20% 50%, ellipse 800px 300px, rgba(#002aff, 0.02), rgba(#fff, 0) ),
-		// radial-gradient( 70% 50%, ellipse 800px 300px, rgba(#002aff, 0.02), rgba(#fff, 0) ),
-		radial-gradient( center center, ellipse 120% 120%, rgba(#000, 0.0) 0%, rgba(#000, 0.0) 80%, rgba(#000, 0.9) ),
+	// @include background(
+	// 	// radial-gradient( 20% 50%, ellipse 800px 300px, rgba(#002aff, 0.02), rgba(#fff, 0) ),
+	// 	// radial-gradient( 70% 50%, ellipse 800px 300px, rgba(#002aff, 0.02), rgba(#fff, 0) ),
+	// 	radial-gradient( center center, ellipse 120% 120%, rgba(#000, 0.0) 0%, rgba(#000, 0.0) 80%, rgba(#000, 0.9) ),
 
-		radial-gradient( 250px 30px, ellipse 300px 10px, rgba(#00c5ca, 0.1), rgba(#000, 0.0) ),
-		radial-gradient( 200px 40px, ellipse 300px 10px, rgba(#fff, 0.1), rgba(#000, 0.0) ),
+	// 	radial-gradient( 250px 30px, ellipse 300px 10px, rgba(#00c5ca, 0.1), rgba(#000, 0.0) ),
+	// 	radial-gradient( 200px 40px, ellipse 300px 10px, rgba(#fff, 0.1), rgba(#000, 0.0) ),
 
-		// linear-gradient( 0deg, rgba(#fff, 0.0) 30%, rgba(#00fff8, 0.05) 50%, rgba(#fff, 0.0) 100%),
-		radial-gradient( 50% 50%, ellipse 800px 800px, rgba(#00fff8, 0.05), rgba(#fff, 0) ),
-		linear-gradient( 0deg, rgba(lighten(#11131f, 8), 0.95) 0%, rgba(lighten(#11131f, 10), 0.95) 100%)
-	);
+	// 	// linear-gradient( 0deg, rgba(#fff, 0.0) 30%, rgba(#00fff8, 0.05) 50%, rgba(#fff, 0.0) 100%),
+	// 	radial-gradient( 50% 50%, ellipse 800px 800px, rgba(#00fff8, 0.05), rgba(#fff, 0) ),
+	// 	linear-gradient( 0deg, rgba(lighten(#11131f, 8), 0.95) 0%, rgba(lighten(#11131f, 10), 0.95) 100%)
+	// );
 
 	background:
 		radial-gradient( ellipse 120% 120%, rgba(#000, 0.0) 0%, rgba(#000, 0.0) 80%, rgba(#000, 0.9) ),
@@ -210,14 +216,33 @@ ul.codoshop-text-editor-tabs {
 		radial-gradient( ellipse 800px 800px, rgba(#00fff8, 0.05), rgba(#fff, 0) ),
 		linear-gradient( rgba(lighten(#11131f, 8), 0.95) 0%, rgba(lighten(#11131f, 10), 0.95) 100%);
 
+	background:
+		radial-gradient( ellipse 120% 120%, rgba(#000, 0.0) 0%, rgba(#000, 0.0) 80%, rgba(#000, 0.9) ),
+		radial-gradient( ellipse 300px 10px, rgba(#000, 0.1), rgba(#000, 0.0) ),
+		radial-gradient( ellipse 300px 10px, rgba(#fff, 0.1), rgba(#000, 0.0) ),
+		radial-gradient( ellipse 800px 800px, rgba(#000, 0.05), rgba(#fff, 0) ),
+		linear-gradient( rgba(lighten(#11131f, 8), 0.95) 0%, rgba(lighten(#11131f, 10), 0.95) 100%);
+
+	background:
+		linear-gradient( 90deg rgba(lighten(#000, 1), 0) 0%, rgba(lighten(#000, 0), 0.7) 100%),
+		radial-gradient( ellipse 300px 10px, rgba(#00c5ca, 0.1), rgba(#000, 0.0) ),
+		// radial-gradient( ellipse 300px 10px, rgba(#fff, 0.0), rgba(#000, 0.0) ),
+		// radial-gradient( ellipse 800px 800px, rgba(#000, 0.05), rgba(#fff, 0) ),
+		// linear-gradient( rgba(lighten(#11131f, 0), 0.95) 0%, rgba(lighten(#11131f, 0), 0.95) 100%)
+		;
+
 	background-position:
 		center center,
-		0px 0px,
-		0px 10px,
+		0px -300px,
+		-300px -100px,
 		50% 50%;
+
+	background: none;
+	background-color: rgba(#181c20, 1);
 
 	> div {
 		z-index: 1;
+		flex-grow: 1;
 	}
 	// 5d3f03
 	// &:after {

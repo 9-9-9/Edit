@@ -1,15 +1,17 @@
-ul.codoshop-text-editor-tabs(ng-attr-hsort='', ng-attr-top-tabs='')
-	li(ng-repeat='file in openFiles', ng-class='{ tab: true, selected: file.selected }')
-		div
-			a(href='javascript:void(0)', ng-click='select($index)')
-				span {{file.name}}
-			a(href='javascript:void(0)', ng-click='close($index)')
-				div
-	li
-		div
-			a(href='javascript:void(0)', ng-click='newFile()', ng-attr-tooltip='', title='new file')
-				span +
-	li
-		div
-.codoshop-text-editor-content
-	ui-codemirror(ng-repeat='file in openFiles', ng-show='file.selected == true', ui-codemirror-opts='editorOptions', ng-attr-codoshop-text-editor='')
+div(ng-attr-codoshop-text-editor='')
+	ul.codoshop-text-editor-tabs(ng-attr-hsort='', ng-attr-top-tabs='')
+		li(ng-repeat='file in openFiles', ng-class='{ tab: true, selected: file.selected }')
+			div
+				a(href='javascript:void(0)', ng-click='select($index)')
+					span {{file.name}}
+				a(href='javascript:void(0)', ng-click='close($index)')
+					div
+		li(data-sort='false')
+			div
+				a(href='javascript:void(0)', ng-click='newFile()', ng-attr-tooltip='', title='new file')
+					span +
+		li(data-sort='false')
+			div
+	.codoshop-text-editor-content
+		div(ng-attr-codoshop-text-editor-instance='', ng-repeat='file in openFiles', ng-show='file.selected == true')
+			//- textarea(ui-codemirror='', ui-codemirror-opts='opts', ui-refresh='codoshopVM.codeMirror.refresh')

@@ -12,8 +12,8 @@ html(ng-app='codoshopSandbox')
 
 		// build:css({.tmp/src,src}) styles/vendor.css 
 		// bower:css
-		link(rel='stylesheet', href='../bower_components/codemirror/lib/codemirror.css')
 		link(rel='stylesheet', href='../bower_components/fontawesome/css/font-awesome.css')
+		link(rel='stylesheet', href='../bower_components/codemirror/lib/codemirror.css')
 		// endbower 
 		link(rel='stylesheet', href='../bower_components/jquery.ui/themes/base/all.css')
 		// endbuild 
@@ -57,13 +57,12 @@ html(ng-app='codoshopSandbox')
 		script(src='../bower_components/angular-sanitize/angular-sanitize.js')
 		script(src='../bower_components/angular-resource/angular-resource.js')
 		script(src='../bower_components/angular-route/angular-route.js')
-		script(src='../bower_components/codemirror/lib/codemirror.js')
-		script(src='../bower_components/angular-ui-codemirror/ui-codemirror.js')
 		script(src='../bower_components/chroma-js/chroma.js')
 		script(src='../bower_components/angular-filter/dist/angular-filter.js')
 		script(src='../bower_components/firebase/firebase.js')
 		script(src='../bower_components/angularfire/dist/angularfire.js')
 		script(src='../bower_components/angular-ui-router/release/angular-ui-router.js')
+		script(src='../bower_components/codemirror/lib/codemirror.js')
 		// endbower 
 		script(src='../bower_components/jquery.ui/ui/core.js')
 
@@ -126,6 +125,8 @@ html(ng-app='codoshopSandbox')
 		script(src='app/main.js')
 
 		script(src='app/main.controller.js')
+
+		script(src='components/file/file.factory.js')
 
 		script(src='components/tree/tree.js')
 

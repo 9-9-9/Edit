@@ -57,7 +57,7 @@ angular.module('codoshop-outline', [])
 						
 						node.name = v.text
 						node.nodes = []
-						scope.treee.push node
+						# scope.treee.push node
 
 						true
 					# console.log '______'

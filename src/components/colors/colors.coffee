@@ -14,19 +14,23 @@ angular.module('codoshop-colors', ['codoshop-parser'])
 
 			# ctrl = [].concat(ctrl)[0]
 			scope.colors = []
+
 			scope.$watch () ->
 				scope.selectedFile()
+
 			, (newVal, oldVal, scope) -> do (cm = null) ->
 
 				scope.colors.length = 0
 				if newVal
+
 					cm = scope.cmLookup.get newVal
 					CodeMirror.runMode cm.getValue(), newVal.mode, (txt, style) -> do (c = null) ->
 						# console.log txt + ' : ' + style
 						if style == 'atom' or style == 'builtin'
 							try
 								c = chroma txt
-								scope.colors.push {'string': c.rgba()} if c
+								console.log c.css()
+								scope.colors.push {'string': c.css()} if c
 							catch e
 								e = e
 						return

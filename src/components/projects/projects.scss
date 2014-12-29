@@ -3,47 +3,18 @@
 $test-color: lighten($bg-color-1, 0);
 
 .codoshop-project-scrollview {
-	// .codoshop-project:nth-last-child(2) {
-	// 	margin-bottom: 0;
-	// }fp fp-fd-c fc-g-1
+
 	height: 0;
 	display: flex;
 	flex-direction: column;
 	flex-grow: 1;
 	overflow-y: auto;
 
-	// > div:first-child {
-	// 	height: 2px;
-	// 	flex-shrink: 0;
-	// 	background-color: $gap-color-1;
-	// }
 }
-
-// .codoshop-project-subheader {
-// 	padding: 0 0 0 ($lhc * 0.25);
-// 	font-size: 12px;
-// 	color: $silver-2;
-// 	background-color: $test-color;
-// 	white-space: nowrap;
-// }
-// .codoshop-project-details {
-// 	padding: 4px 0 0 0;
-// 	display: flex;
-// 	justify-content: center;
-// 	// font-size: 21px;
-// 	line-height: 1;
-// 	position: relative;
-// 	// background-color: darken($test-color, 2);
-// 	background-color: darken($test-color, 0);
-
-// 	> div:first-child {
-
-// 	}
-
 	
 	
 // }
-.codoshop-project {
+div[ng-attr-codoshop-project-view] {
 	// margin-bottom: $lhc * 0.25;
 	
 
@@ -139,7 +110,7 @@ $test-color: lighten($bg-color-1, 0);
 		flex-shrink: 0;
 		background-color: rgba(#000, 0.5);
 	}
-	filter: drop-shadow(0px 5px 5px rgba(#000, 0.5));
+	// filter: drop-shadow(0px 5px 5px rgba(#000, 0.5));
 }
 
 ul.codoshop-projects-button-row {
@@ -214,93 +185,125 @@ ul.codoshop-projects-button-row {
 	
 }
 
-div[ng-attr-codoshop-project] {
+div[ng-attr-codoshop-project-view] {
 	max-width: 100%;
 	display: flex;
 	flex-shrink: 0;
 	overflow: hidden;
 
+	&:last-child {
+		min-height: 100% !important;
+	}
+	&:before {
+		content: '';
+		width: 1px;
+		flex-shrink: 0;
+		background-color: $bg-color-1;
+	}
 	&:after {
 		content: '';
-		width: 0px;
+		width: 1px;
 		flex-shrink: 0;
 		background-color: rgba(#000, 0.5);
 	}
 	&[selected='selected'] {
-		header {
-			color: rgba(#fff, 0.6) !important;
-			// color: transparent;
-			text-shadow: 0px 0px 0.5px rgba(#fff, 0.3);
-			// filter: drop-shadow(0px 0px 8px rgba(#fff, 0.1));
-			
+
+		> div:nth-child(1) {
+			> header {
+				color: lighten($bg-color-2, 20) !important;
+				color: rgba(#fff, 0.5) !important;
+				// color: transparent;
+				// text-shadow: 0px 0px 0.5px rgba(#fff, 0.3);
+				// filter: drop-shadow(0px 0px 8px rgba(#fff, 0.1));
+				> div:nth-child(1) {
+					// filter: drop-shadow(10px 0px 10px rgba(#fff, 0.9));
+					// background-color: rgba(#fff, 0.9);
+				}
+			}
 		}
 	}
 	&:not([selected='selected']) {
-		header {
+		> div:nth-child(1) > header {
+
 			a {
 				&:hover {
-					color: rgba(#fff, 0.5);
+					// color: rgba(#fff, 0.3);
+					color: lighten($silver-1, 5) !important;
 					// text-shadow: 0px 0px 0.5px rgba(#fff, 0.4);
 				}
 			}
+		}
+		a {
+			// color: rgba(#fff, 0.2);
+			// font-weight: 500;
+			// background: linear-gradient(#fff, #666);
+		 // background-clip: text;
+		 // text-fill-color: transparent;
+		//  -webkit-mask-image: -webkit-linear-gradient(top, rgba(#fff, 0.3), rgba(#000, 0.5) 30%, rgba(#000, 0.5));
+		// -webkit-mask-image: linear-gradient(top, rgba(#000, 0.1), rgba(#000, 0.5) 50%, rgba(#000, 0.5));
+		// 	text-shadow: 0px 0px 5px rgba(#000, 0.5);
 		}
 	}
 	> div:nth-child(1) {
 		display: flex;
 		flex-direction: column;
 		flex-grow: 1;
-		// flex-shrink: 1;
 
-		> div:nth-child(1) {
-			padding: 4px 4px 0 4px;
-			display: none;
-			justify-content: flex-start;
-			background-color: $bg-color-1;
-			// > div {
-			// 	align-self: flex-end;
-			// }
-		}
 		> header {
-			padding: 15px 10px 0px 0px;
+			padding: 14px 7px 0px 7px;
 			display: flex;
-			font-weight: 200;
-			color: $silver-2;
+			
+			color: $silver;
 			background-color: $bg-color-1;
 			a {
 				color: inherit;
 			}
 			> div:nth-child(1) {
 				width: 2px;
-				margin-right: 8px;
-				display: flex;
+				margin-left: 7px;
+				margin-right: 14px;
+				display: none;
 				flex-direction: column;
-				background-color: rgba(#fff, 0.7);
-				filter: drop-shadow(10px 0px 8px rgba(#999, 0.7));
+				background-color: rgba(#fff, 0.5);
+				
 				> a {
 					width: 20px;
 					height: 25px;
 				}
 			}
 			> div:nth-child(2) {
-
-				> a:nth-child(1) {
+				display: flex;
+				padding: 0px 0 0px 0;
+				> div {
+					display: none;
+					width: 30px;
+					height: 30px;
+					border: 1px solid rgba($gap-color-1, 0.2);
+					border-radius: 100px;
+					flex-shrink: 0;
+				}
+				> a {
 					display: flex;
 					flex-direction: column;
 					flex-grow: 1;
-					// transition: all 0.1s ease-in;
+					transition: all 0.2s ease-in;
 
 					> div:nth-child(1) {
 						display: flex;
 						font-size: 24px;
-						// font-weight: 100;
+						font-weight: 900;
 						white-space: nowrap;
-						line-height: 1;
-						// letter-spacing: -1px;
-						
+						// line-height: 1.1;
+						// letter-spacing: 1px;
+						// filter: drop-shadow(0px 0px 8px rgba(#999, 0.7));
 					}
 
-					> div:nth-child(3) {
+					> div:nth-child(2) {
+						margin-top: -5px;
 						font-size: 12px;
+						font-weight: 100;
+						letter-spacing: 1px;
+						// line-height: 1;
 						white-space: nowrap;
 					}
 
@@ -316,8 +319,25 @@ div[ng-attr-codoshop-project] {
 			}
 		}
 
+		> div:nth-child(2) {
+			display: flex;
+
+			// &:before {
+			// 	content: '';
+			// 	width: 1px;
+			// 	flex-shrink: 0;
+			// 	background-color: rgba(#fff, 0.7);
+			// }
+			> div {
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+
+			}
+		}
+
 		ul.codoshop-project-buttons {
-			padding: 10px 4px 10px 4px;
+			padding: 7px 7px 7px 7px;
 			display: flex;
 			// justify-content: center;
 			align-items: center;
@@ -327,7 +347,7 @@ div[ng-attr-codoshop-project] {
 
 			> li {
 				// flex-shrink: 0;
-				margin: 0 2px;
+				// margin: 0 2px;
 				// & + li {
 				// 	margin-left: 10px;
 				// }
@@ -364,13 +384,26 @@ div[ng-attr-codoshop-project] {
 					// 	height: 40px;
 						
 					// }
+					&:hover {
+						color: lighten($silver-2, 5) !important;
+						// color: black !important;
+						font-size: 30px !important;
+					}
 				}
 			}
+		}
+		.codoshop-project-msg {
+			font-size: 12px;
+			font-weight: 200;
+			text-align: center;
+			color: rgba(#fff, 0.4);
+			background-color: $bg-color-1;
 		}
 	}
 
 	> div > div:last-child {
-		height: 15px;
+		min-height: 0px;
+		flex-grow: 1;
 		background-color: $bg-color-1;
 	}
 }
