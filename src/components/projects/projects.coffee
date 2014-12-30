@@ -109,7 +109,10 @@ angular
 
 			s.open = do (s) -> (n) ->
 				if n.type == 'file'
-					s.openFiles.push n
+						if s.openFiles.indexOf(n) == -1
+							s.openFiles.push n
+						else
+							console.log 'file is already open'
 					ctrl.selectFile n
 				return
 

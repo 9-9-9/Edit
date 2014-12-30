@@ -250,7 +250,7 @@ div[ng-attr-codoshop-project-view] {
 		flex-grow: 1;
 
 		> header {
-			padding: 14px 7px 0px 7px;
+			padding: 7px 7px 7px 7px;
 			display: flex;
 			
 			color: $silver;
@@ -299,12 +299,13 @@ div[ng-attr-codoshop-project-view] {
 					}
 
 					> div:nth-child(2) {
-						margin-top: -5px;
+						// margin-top: -5px;
 						font-size: 12px;
 						font-weight: 200;
-						letter-spacing: 1px;
-						// line-height: 1;
+						// letter-spacing: 1px;
+						line-height: 1;
 						white-space: nowrap;
+						color: rgba($silver, 0.3);
 					}
 
 					// &:hover {

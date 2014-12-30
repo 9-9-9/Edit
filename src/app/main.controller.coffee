@@ -44,13 +44,13 @@ angular
 
 				return
 
-			$scope.selectedFile = do ($s, arr = null) -> () ->
+			$s.selectedFile = do ($s, arr = null) -> () ->
 				arr = $s.openFiles.filter (el) ->
 					el.selected == true
 				if arr.length > 0 then arr[0] else null
 				
 
-			$scope.$watchCollection 'openFiles', do (ctrl = @) -> (newItems, oldItems, scope) ->
+			$s.$watchCollection 'openFiles', do (ctrl = @) -> (newItems, oldItems, scope) ->
 
 				missingItems = oldItems.filter do (newItems) -> (oldI) ->
 					newItems.indexOf(oldI) == -1
@@ -70,15 +70,17 @@ angular
 
 				return
 
-			$scope.newFile = do ($scope, newFile = null) -> () ->
-				newFile = 
+			$s.newFile = do ($s) => () => do (nf = null) =>
+				nf = 
 					name: 'untitled'
 					mode: 'plaintext'
 					content:
 						"""
 						"""
-					selected: true
-				$scope.openFiles.push newFile
+					# selected: true
+				$s.openFiles.push nf
+				@selectFile nf
+				
 				return
 
 			@newProject = do ($scope) -> () -> do (newProject = null) ->
